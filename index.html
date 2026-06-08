@@ -39,44 +39,67 @@
   .benefit .arrow{ color:var(--accent); font-weight:700; white-space:nowrap; }
   .benefit b{ font-weight:700; color:var(--ink); }
 
-  /* ----- слайд 1 (Инженер): заголовок-утверждение + тело + выделенная мысль ----- */
+  /* ----- слайд 1 (Инженер): заголовок → акцент-мысль (ДНК «для вас →») → тело ----- */
   #s1 h1{ font-size:40px; line-height:1.16; letter-spacing:-.01em; max-width:610px; }
-  #s1 .body{ font-size:21px; max-width:600px; margin-top:26px; }
-  .stmt{ margin-top:30px; max-width:600px; background:#F6F8FA; border:1px solid var(--line);
-    border-radius:14px; padding:20px 24px; font-weight:600; font-size:21px; line-height:1.42; color:var(--ink); }
+  .insight{ margin-top:26px; max-width:600px; font-size:24px; line-height:1.4; font-weight:500; color:var(--ink); }
+  .insight .ar{ color:var(--accent); font-weight:800; }
+  .insight b{ color:var(--ink); font-weight:800; }
+  #s1 .body{ font-size:21px; max-width:600px; margin-top:24px; }
 
-  /* ===== ЭКРАН 0 (Знакомство): широкая колонка + бес­поковый блок «Резюме/Презентация» ===== */
+  /* ===== ЭКРАН 0 (Знакомство): карточки на белом, без фоновой плашки ===== */
   #s0 .text-col{ width:820px; }
   #s0 h1{ font-size:70px; line-height:1.07; max-width:780px; }
   #s0 .body{ max-width:740px; }
-  .cta{ margin-top:40px; max-width:720px; padding:4px 0 4px 22px; border-left:3px solid var(--line);
-    font-weight:600; font-size:21px; line-height:1.42; color:var(--ink); }
-  .cta b{ color:var(--ink); font-weight:700; }
-  .compare{ position:absolute; left:960px; top:50%; transform:translateY(-50%);
-    width:860px; height:800px; border-radius:28px; background:#fff;
-    border:1px solid var(--line); box-shadow:0 36px 74px -34px rgba(13,23,48,.22);
-    padding:60px; display:flex; flex-direction:column; }
-  .badge{ align-self:flex-start; font-family:'IBM Plex Mono',monospace; font-size:15px;
-    letter-spacing:.12em; color:var(--mute); background:#F4F6F9; border:1px solid var(--line);
-    padding:9px 16px; border-radius:999px; margin-bottom:46px; }
-  .cmp-grid{ flex:1; display:grid; grid-template-columns:1fr 1fr; gap:26px; }
-  .cmp-card{ position:relative; border-radius:20px; padding:34px 30px; display:flex; flex-direction:column;
-    border:1px solid var(--line); background:#FAFBFC; }
-  .cmp-card.now{ border:1px solid var(--line); border-top:3px solid var(--amber); background:#fff;
-    box-shadow:0 22px 44px -28px rgba(13,23,48,.16); }
+
+  /* призыв — акцент-маркер */
+  .cta{ margin-top:44px; max-width:660px; font-weight:600; font-size:25px; line-height:1.4; color:var(--ink); }
+  .cta mark{ background:linear-gradient(transparent 56%, rgba(247,181,0,.42) 56%); color:inherit; padding:0 2px; }
+  .cta b{ color:var(--ink); font-weight:800; }
+
+  /* compare — прозрачный контейнер */
+  .compare{ position:absolute; left:960px; top:50%; transform:translateY(-50%); width:860px;
+    display:flex; flex-direction:column; }
+
+  /* мета: отрисованные элементы + иконки */
+  .meta{ display:flex; align-items:center; gap:28px; margin:0 0 28px 4px; }
+  .meta-item{ display:flex; align-items:center; gap:11px; font-family:'IBM Plex Mono',monospace;
+    font-size:14px; letter-spacing:.04em; color:var(--mute); }
+  .meta-item svg{ flex:none; color:var(--mute); }
+  .film{ display:inline-flex; align-items:flex-end; gap:3px; }
+  .film i{ display:block; width:5px; height:15px; border-radius:1.5px; background:#D7DCE4; }
+  .film i:first-child{ background:var(--accent); height:19px; }
+
+  .cmp-grid{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  .cmp-card{ position:relative; border-radius:20px; padding:32px 28px 28px; min-height:436px;
+    display:flex; flex-direction:column; text-decoration:none;
+    border:1px solid var(--line); background:#fff; box-shadow:0 26px 54px -36px rgba(13,23,48,.22); }
   .cmp-eyebrow{ font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:.2em;
-    text-transform:uppercase; color:var(--mute); margin-bottom:24px; }
-  .cmp-card.now .cmp-eyebrow{ color:var(--ink); }
-  .cmp-ico{ width:54px; height:54px; margin-bottom:22px; }
-  .cmp-title{ font-weight:700; font-size:27px; line-height:1.18; letter-spacing:-.01em; color:var(--ink); margin-bottom:26px; }
-  .cmp-card:not(.now) .cmp-title{ color:#6B7686; font-weight:600; }
+    text-transform:uppercase; color:var(--mute); margin-bottom:22px; }
+  .cmp-ico{ width:52px; height:52px; margin-bottom:20px; }
+  .cmp-title{ font-weight:700; font-size:27px; line-height:1.18; letter-spacing:-.01em; color:var(--ink); margin-bottom:24px; }
   .chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top:auto; }
   .chip{ font-size:17px; font-weight:500; padding:9px 15px; border-radius:999px;
     background:#fff; border:1px solid var(--line); color:var(--mute); }
-  .cmp-card.now .chip{ color:var(--ink); border-color:var(--line); background:#fff; }
   .here{ position:absolute; top:20px; right:20px; font-family:'IBM Plex Mono',monospace;
-    font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:#11161F;
-    background:var(--amber); padding:6px 12px; border-radius:999px; font-weight:500; }
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:#fff;
+    background:var(--accent); padding:6px 12px; border-radius:999px; font-weight:500; }
+
+  /* Резюме — кликабельна, ховер = жёлтый, ссылка на hh.ru */
+  a.cmp-card.resume{ color:var(--mute); transition:border-color .18s, background .18s, box-shadow .18s, transform .18s; }
+  a.cmp-card.resume .cmp-title{ color:#6B7686; font-weight:600; }
+  a.cmp-card.resume .cmp-ico{ color:var(--mute); }
+  .resume-go{ margin-top:20px; font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:.04em;
+    color:var(--mute); display:flex; align-items:center; gap:7px; }
+  a.cmp-card.resume:hover, a.cmp-card.resume.demo-hover{ border-color:var(--amber); background:#FFFDF6;
+    transform:translateY(-3px); box-shadow:0 34px 60px -32px rgba(247,181,0,.42); }
+  a.cmp-card.resume:hover .cmp-eyebrow, a.cmp-card.resume:hover .cmp-ico, a.cmp-card.resume:hover .resume-go,
+  a.cmp-card.resume.demo-hover .cmp-eyebrow, a.cmp-card.resume.demo-hover .cmp-ico, a.cmp-card.resume.demo-hover .resume-go{ color:var(--amber); }
+
+  /* Презентация — синий акцент (вы здесь) */
+  .cmp-card.now{ border-top:3px solid var(--accent); box-shadow:0 30px 56px -34px rgba(47,107,255,.30); }
+  .cmp-card.now .cmp-eyebrow{ color:var(--accent); }
+  .cmp-card.now .cmp-ico{ color:var(--accent); }
+  .cmp-card.now .chip{ color:var(--ink); }
 
   /* ----- тёмная карта (метрика) ----- */
   .card{ container-type:size; position:absolute; left:810px; top:120px; width:1010px; height:840px;
@@ -120,19 +143,19 @@
     .body{ font-size:clamp(15px,4vw,18px); max-width:none; margin-top:1.4em; }
     .benefit{ font-size:clamp(14px,3.7vw,17px); margin-top:1.7em; }
     #s1 h1{ font-size:clamp(26px,6.6vw,34px); }
+    .insight{ font-size:clamp(17px,4.6vw,21px); }
     #s1 .body{ font-size:clamp(15px,4vw,18px); }
-    .stmt{ font-size:clamp(16px,4.2vw,19px); max-width:none; padding:clamp(16px,4.5vw,20px) clamp(18px,5vw,24px); }
     #s0 .text-col{ width:auto; }
     #s0 h1{ font-size:clamp(33px,8.2vw,50px); }
     #s0 .body{ max-width:none; }
-    .cta{ font-size:clamp(16px,4.2vw,19px); max-width:none; margin-top:1.6em; }
-    .compare{ position:static; transform:none; width:100%; height:auto;
-      padding:clamp(24px,6.5vw,34px); border-radius:22px; box-shadow:0 22px 50px -34px rgba(13,23,48,.22); }
-    .badge{ font-size:clamp(12px,3.2vw,14px); margin-bottom:clamp(24px,6vw,34px); }
+    .cta{ font-size:clamp(19px,5vw,23px); max-width:none; margin-top:1.6em; }
+    .compare{ position:static; transform:none; width:100%; }
+    .meta{ margin:0 0 clamp(20px,5vw,28px) 0; gap:22px; flex-wrap:wrap; }
     .cmp-grid{ grid-template-columns:1fr; gap:clamp(16px,4.5vw,22px); }
-    .cmp-card{ padding:clamp(22px,6vw,30px); }
+    .cmp-card{ min-height:0; padding:clamp(22px,6vw,30px); }
     .cmp-ico{ width:clamp(42px,11vw,52px); height:clamp(42px,11vw,52px); margin-bottom:16px; }
     .cmp-title{ font-size:clamp(20px,5.4vw,25px); margin-bottom:18px; }
+    .chips{ margin-top:18px; }
     .chip{ font-size:clamp(14px,3.7vw,16px); }
     .here{ font-size:clamp(10px,2.6vw,12px); }
 
@@ -164,31 +187,43 @@
           <div class="kicker">01 · знакомство</div>
           <h1>Подход, который работает почти в любом бизнесе</h1>
           <p class="body">Здравствуйте, я Алексей Ширшов. Покажу свой подход к работе: он применим почти к любому бизнесу, а не только к стройке. В резюме — опыт и цифры, а здесь принципы, которыми руководствуюсь, рабочие инструменты и доказательства к ним. Десять слайдов, около семи минут.</p>
-          <p class="cta">За 7 минут вы поймёте обо мне больше, <b>чем за час собеседования</b></p>
+          <p class="cta">За <mark>7 минут</mark> вы поймёте обо мне больше, <b>чем за час собеседования</b></p>
         </div>
 
         <div class="compare">
-          <div class="badge">≈ 7 МИН · 10 СЛАЙДОВ</div>
+          <div class="meta">
+            <div class="meta-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"/><path d="M12 7 v5 l3.2 2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>≈ 7 минут</span>
+            </div>
+            <div class="meta-item">
+              <span class="film"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+              <span>10 слайдов</span>
+            </div>
+          </div>
           <div class="cmp-grid">
-            <div class="cmp-card">
+            <a class="cmp-card resume" href="#" target="_blank" rel="noopener">
               <div class="cmp-eyebrow">резюме</div>
-              <svg class="cmp-ico" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-                <rect x="10" y="6" width="28" height="36" rx="4" stroke="#9AA3B2" stroke-width="2.2"/>
-                <line x1="16" y1="16" x2="32" y2="16" stroke="#9AA3B2" stroke-width="2.2" stroke-linecap="round"/>
-                <line x1="16" y1="23" x2="32" y2="23" stroke="#9AA3B2" stroke-width="2.2" stroke-linecap="round"/>
-                <line x1="16" y1="30" x2="26" y2="30" stroke="#9AA3B2" stroke-width="2.2" stroke-linecap="round"/>
+              <svg class="cmp-ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" aria-hidden="true">
+                <rect x="10" y="6" width="28" height="36" rx="4" stroke-width="2.2"/>
+                <line x1="16" y1="16" x2="32" y2="16" stroke-width="2.2" stroke-linecap="round"/>
+                <line x1="16" y1="23" x2="32" y2="23" stroke-width="2.2" stroke-linecap="round"/>
+                <line x1="16" y1="30" x2="26" y2="30" stroke-width="2.2" stroke-linecap="round"/>
               </svg>
               <div class="cmp-title">Опыт и цифры</div>
               <div class="chips"><span class="chip">опыт</span><span class="chip">цифры</span><span class="chip">обязанности</span></div>
-            </div>
+              <div class="resume-go">смотреть на hh.ru →</div>
+            </a>
             <div class="cmp-card now">
               <div class="here">вы здесь</div>
               <div class="cmp-eyebrow">презентация</div>
-              <svg class="cmp-ico" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-                <rect x="7" y="9" width="34" height="24" rx="3.5" stroke="#F7B500" stroke-width="2.4"/>
-                <path d="M17 27 L22 21 L27 24 L33 16" stroke="#F7B500" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-                <line x1="24" y1="33" x2="24" y2="39" stroke="#F7B500" stroke-width="2.4" stroke-linecap="round"/>
-                <line x1="18" y1="40" x2="30" y2="40" stroke="#F7B500" stroke-width="2.4" stroke-linecap="round"/>
+              <svg class="cmp-ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" aria-hidden="true">
+                <rect x="7" y="9" width="34" height="24" rx="3.5" stroke-width="2.4"/>
+                <path d="M17 27 L22 21 L27 24 L33 16" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="24" y1="33" x2="24" y2="39" stroke-width="2.4" stroke-linecap="round"/>
+                <line x1="18" y1="40" x2="30" y2="40" stroke-width="2.4" stroke-linecap="round"/>
               </svg>
               <div class="cmp-title">Подход и доказательства</div>
               <div class="chips"><span class="chip">подход</span><span class="chip">кейсы</span><span class="chip">доказательства</span></div>
@@ -206,8 +241,8 @@
         <div class="text-col">
           <div class="kicker">02 · инженер</div>
           <h1>Не просто управляю процессами, а проектирую систему, которая будет сама помогать в управлении</h1>
+          <p class="insight">Люди в ней важны, а процессы ведут к общему результату <span class="ar">→</span> <b>деньгам компании</b>.</p>
           <p class="body">Я инженер из строительной сферы, и проектировать — это мой профессиональный навык, который я адаптировал к бизнесу и системе в нём.</p>
-          <p class="stmt">Люди в ней важны, а процессы ведут к общему результату — деньгам компании.</p>
         </div>
 
         <div class="card">
@@ -308,6 +343,6 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
     fit();
   </script>
-  <!-- build 20260609-010119 -->
+  <!-- build 20260609-011321 -->
 </body>
 </html>
