@@ -39,9 +39,11 @@
   .benefit .arrow{ color:var(--accent); font-weight:700; white-space:nowrap; }
   .benefit b{ font-weight:700; color:var(--ink); }
 
-  /* ----- слайд 1 (Инженер): заголовок-акцент ВНУТРИ тела (пересинхрон под ТЗ §5) ----- */
-  .lead{ font-weight:400; font-size:32px; line-height:1.42; color:var(--body); max-width:600px; }
-  .lead b{ font-weight:700; color:var(--ink); }
+  /* ----- слайд 1 (Инженер): заголовок-утверждение + тело + выделенная мысль ----- */
+  #s1 h1{ font-size:40px; line-height:1.16; letter-spacing:-.01em; max-width:610px; }
+  #s1 .body{ font-size:21px; max-width:600px; margin-top:26px; }
+  .stmt{ margin-top:30px; max-width:600px; background:#F6F8FA; border:1px solid var(--line);
+    border-radius:14px; padding:20px 24px; font-weight:600; font-size:21px; line-height:1.42; color:var(--ink); }
 
   /* ===== ЭКРАН 0 (Знакомство): широкая колонка + бес­поковый блок «Резюме/Презентация» ===== */
   #s0 .text-col{ width:820px; }
@@ -117,7 +119,9 @@
     h1{ font-size:clamp(34px,8.4vw,52px); max-width:none; }
     .body{ font-size:clamp(15px,4vw,18px); max-width:none; margin-top:1.4em; }
     .benefit{ font-size:clamp(14px,3.7vw,17px); margin-top:1.7em; }
-    .lead{ font-size:clamp(20px,5.2vw,26px); max-width:none; }
+    #s1 h1{ font-size:clamp(26px,6.6vw,34px); }
+    #s1 .body{ font-size:clamp(15px,4vw,18px); }
+    .stmt{ font-size:clamp(16px,4.2vw,19px); max-width:none; padding:clamp(16px,4.5vw,20px) clamp(18px,5vw,24px); }
     #s0 .text-col{ width:auto; }
     #s0 h1{ font-size:clamp(33px,8.2vw,50px); }
     #s0 .body{ max-width:none; }
@@ -201,7 +205,9 @@
 
         <div class="text-col">
           <div class="kicker">02 · инженер</div>
-          <p class="lead">Я инженер из строительной сферы и любую задачу решаю как проект: что нужно сделать, какие требования и условия учесть. Поэтому <b>не просто управляю процессами, а проектирую систему, которая будет сама помогать в управлении</b>. Люди в ней важны, а процессы ведут к общему результату — деньгам компании.</p>
+          <h1>Не просто управляю процессами, а проектирую систему, которая будет сама помогать в управлении</h1>
+          <p class="body">Я инженер из строительной сферы, и проектировать — это мой профессиональный навык, который я адаптировал к бизнесу и системе в нём.</p>
+          <p class="stmt">Люди в ней важны, а процессы ведут к общему результату — деньгам компании.</p>
         </div>
 
         <div class="card">
@@ -302,6 +308,6 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
     fit();
   </script>
-  <!-- build 20260609-003633 -->
+  <!-- build 20260609-010119 -->
 </body>
 </html>
