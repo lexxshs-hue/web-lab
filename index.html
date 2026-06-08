@@ -105,8 +105,14 @@
   #s2 .text-col{ width:760px; }
   #s2 h1{ font-size:54px; line-height:1.1; max-width:720px; }
   #s2 .body{ max-width:700px; }
-  .schema{ position:absolute; left:960px; top:50%; transform:translateY(-50%); width:880px;
-    display:flex; flex-direction:column; gap:24px; }
+  .schema{ position:absolute; left:960px; top:50%; transform:translateY(-50%); width:860px;
+    display:flex; flex-direction:column; align-items:center; gap:18px; }
+  /* реальная схема как «текстура глубины»: рамка + затемнённые края */
+  .schema-frame{ position:relative; width:100%; max-width:780px; border-radius:16px; overflow:hidden;
+    background:#fff; border:1px solid var(--line); box-shadow:0 40px 84px -36px rgba(13,23,48,.3); }
+  .schema-frame img{ display:block; width:100%; height:auto; }
+  .schema-frame::after{ content:""; position:absolute; inset:0; pointer-events:none; border-radius:16px;
+    box-shadow:inset 0 0 70px rgba(13,23,48,.20), inset 0 -28px 40px -22px rgba(13,23,48,.22); }
   .schema-pipe{ display:flex; align-items:stretch; }
   .node{ flex:1; background:#fff; border:1px solid var(--line); border-radius:14px; padding:20px 12px;
     display:flex; flex-direction:column; align-items:center; gap:11px; text-align:center;
@@ -121,10 +127,10 @@
   .band-tag{ font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase;
     color:var(--accent); background:#fff; border:1px solid var(--line); border-radius:7px; padding:6px 11px; flex:none; }
   .band-txt{ font-size:16px; color:var(--body); }
-  .schema-stat{ display:flex; align-items:baseline; gap:12px; padding-top:22px; border-top:1px solid var(--line); }
-  .stat-from{ font-family:'IBM Plex Mono',monospace; font-size:22px; color:var(--mute); }
-  .stat-arrow{ color:var(--amber); font-weight:800; font-size:26px; }
-  .stat-to{ font-weight:800; font-size:52px; line-height:1; letter-spacing:-.02em; color:var(--amber); }
+  .schema-stat{ display:flex; align-items:baseline; gap:12px; }
+  .stat-from{ font-family:'IBM Plex Mono',monospace; font-size:20px; color:var(--mute); }
+  .stat-arrow{ color:var(--amber); font-weight:800; font-size:24px; }
+  .stat-to{ font-weight:800; font-size:42px; line-height:1; letter-spacing:-.02em; color:var(--amber); }
   .stat-label{ font-size:17px; color:var(--body); align-self:center; }
 
   /* ----- тёмная карта (метрика) ----- */
@@ -374,30 +380,8 @@
         </div>
 
         <div class="schema">
-          <div class="schema-pipe">
-            <div class="node">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 16 9 10 13 14 21 6"/><polyline points="15 6 21 6 21 12"/></svg>
-              <span>Маркетинг</span>
-            </div>
-            <div class="pipe-arrow">→</div>
-            <div class="node">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 12.5 L12 21 L3 12 V4 a1 1 0 0 1 1-1 h8 z"/><circle cx="7.5" cy="7.5" r="1.4" fill="currentColor" stroke="none"/></svg>
-              <span>Продажи</span>
-            </div>
-            <div class="pipe-arrow">→</div>
-            <div class="node">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="8" y1="12" x2="8.01" y2="12"/><line x1="12" y1="12" x2="12.01" y2="12"/><line x1="16" y1="12" x2="16.01" y2="12"/><line x1="8" y1="16" x2="8.01" y2="16"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-              <span>Расчёты</span>
-            </div>
-            <div class="pipe-arrow">→</div>
-            <div class="node">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5 v3 M12 18.5 v3 M2.5 12 h3 M18.5 12 h3 M5 5 l2.1 2.1 M16.9 16.9 l2.1 2.1 M19 5 l-2.1 2.1 M7.1 16.9 l-2.1 2.1"/></svg>
-              <span>Сервис</span>
-            </div>
-          </div>
-          <div class="schema-support">
-            <div class="band"><span class="band-tag">Академия</span><span class="band-txt">обучение и адаптация</span></div>
-            <div class="band"><span class="band-tag">ОКК</span><span class="band-txt">контроль качества</span></div>
+          <div class="schema-frame">
+            <img src="assets/schema.png" alt="Карта процессов компании — лиды, отделы, статусы, реализация">
           </div>
           <div class="schema-stat">
             <span class="stat-from">3</span>
@@ -424,6 +408,6 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
     fit();
   </script>
-  <!-- build 20260609-014531 -->
+  <!-- build 20260609-015439 -->
 </body>
 </html>
