@@ -163,7 +163,8 @@
       padding: clamp(36px,10vw,56px) clamp(20px,6vw,30px) clamp(40px,12vw,60px); }
     .stage{ position:static; transform:none; width:100%; height:auto;
       display:flex; flex-direction:column; gap:clamp(26px,7vw,40px); }
-    .corner{ position:static; }
+    /* мобайл: номер+имя живут в кикере, дублирующий «NN / 10» прячем */
+    .corner{ display:none; }
     .text-col{ position:static; transform:none; width:auto; }
     h1{ font-size:clamp(34px,8.4vw,52px); max-width:none; }
     .body{ font-size:clamp(15px,4vw,18px); max-width:none; margin-top:1.4em; }
@@ -179,6 +180,7 @@
     .meta{ margin:clamp(22px,5.5vw,30px) 0 0; gap:22px; flex-wrap:wrap; }
     .cmp-grid{ grid-template-columns:1fr; gap:clamp(16px,4.5vw,22px); }
     .cmp-card{ min-height:0; padding:clamp(22px,6vw,30px); }
+    .cmp-card.resume{ display:none; }   /* на мобайле блок «Резюме» убран */
     .cmp-ico{ width:clamp(42px,11vw,52px); height:clamp(42px,11vw,52px); margin-bottom:16px; }
     .cmp-title{ font-size:clamp(20px,5.4vw,25px); margin-bottom:18px; }
     .chips{ margin-top:18px; }
@@ -337,24 +339,24 @@
               </filter>
             </defs>
             <g stroke="rgba(255,255,255,.06)" stroke-width="1">
-              <line x1="52" y1="110" x2="548" y2="110"/><line x1="52" y1="180" x2="548" y2="180"/>
-              <line x1="52" y1="250" x2="548" y2="250"/>
+              <line x1="8" y1="110" x2="592" y2="110"/><line x1="8" y1="180" x2="592" y2="180"/>
+              <line x1="8" y1="250" x2="592" y2="250"/>
             </g>
-            <path d="M52,252 L217,259 L382,174 L548,78 L548,300 L52,300 Z" fill="url(#traceM)"/>
-            <path d="M52,252 L217,259 L382,174 L548,78" fill="none"
+            <path d="M8,252 L203,259 L397,174 L592,78 L592,300 L8,300 Z" fill="url(#traceM)"/>
+            <path d="M8,252 L203,259 L397,174 L592,78" fill="none"
                   stroke="#F7B500" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" filter="url(#glowM)"/>
             <g filter="url(#glowM)">
-              <circle cx="52" cy="252" r="5.5" fill="#FFD45E"/><circle cx="217" cy="259" r="5.5" fill="#FFD45E"/>
-              <circle cx="382" cy="174" r="5.5" fill="#FFD45E"/><circle cx="548" cy="78" r="6.5" fill="#FFE9A8"/>
+              <circle cx="8" cy="252" r="5.5" fill="#FFD45E"/><circle cx="203" cy="259" r="5.5" fill="#FFD45E"/>
+              <circle cx="397" cy="174" r="5.5" fill="#FFD45E"/><circle cx="592" cy="78" r="6.5" fill="#FFE9A8"/>
             </g>
-            <text class="vm-num" x="52" y="236" text-anchor="start">21<tspan class="vm-unit" dx="5">млн ₽</tspan></text>
-            <text class="vm-num" x="217" y="243" text-anchor="middle">18<tspan class="vm-unit" dx="5">млн ₽</tspan></text>
-            <text class="vm-num" x="382" y="158" text-anchor="middle">55<tspan class="vm-unit" dx="5">млн ₽</tspan></text>
-            <text class="vm-num peak" x="548" y="58" text-anchor="end">97<tspan class="vm-unit" dx="5">млн ₽</tspan></text>
-            <text class="ym-lbl" x="52" y="345" text-anchor="start">2022</text>
-            <text class="ym-lbl" x="217" y="345" text-anchor="middle">2023</text>
-            <text class="ym-lbl" x="382" y="345" text-anchor="middle">2024</text>
-            <text class="ym-lbl" x="548" y="345" text-anchor="end">2025</text>
+            <text class="vm-num" x="8" y="236" text-anchor="start">21<tspan class="vm-unit" dx="5">млн ₽</tspan></text>
+            <text class="vm-num" x="203" y="243" text-anchor="middle">18<tspan class="vm-unit" dx="5">млн ₽</tspan></text>
+            <text class="vm-num" x="397" y="158" text-anchor="middle">55<tspan class="vm-unit" dx="5">млн ₽</tspan></text>
+            <text class="vm-num peak" x="592" y="58" text-anchor="end">97<tspan class="vm-unit" dx="5">млн ₽</tspan></text>
+            <text class="ym-lbl" x="8" y="345" text-anchor="start">2022</text>
+            <text class="ym-lbl" x="203" y="345" text-anchor="middle">2023</text>
+            <text class="ym-lbl" x="397" y="345" text-anchor="middle">2024</text>
+            <text class="ym-lbl" x="592" y="345" text-anchor="end">2025</text>
           </svg>
         </div>
       </div>
@@ -422,6 +424,6 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
     fit();
   </script>
-  <!-- build 20260609-012744 -->
+  <!-- build 20260609-013535 -->
 </body>
 </html>
