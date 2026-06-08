@@ -40,7 +40,7 @@
   .benefit b{ font-weight:700; color:var(--ink); }
 
   /* ----- слайд 1 (Инженер): заголовок → акцент-мысль (ДНК «для вас →») → тело ----- */
-  #s1 h1{ font-size:40px; line-height:1.16; letter-spacing:-.01em; max-width:610px; }
+  #s1 h1{ font-size:48px; line-height:1.14; letter-spacing:-.01em; max-width:610px; }
   .insight{ margin-top:26px; max-width:600px; font-size:24px; line-height:1.4; font-weight:500; color:var(--ink); }
   .insight .ar{ color:var(--accent); font-weight:800; }
   .insight b{ color:var(--ink); font-weight:800; }
@@ -48,7 +48,7 @@
 
   /* ===== ЭКРАН 0 (Знакомство): карточки на белом, без фоновой плашки ===== */
   #s0 .text-col{ width:820px; }
-  #s0 h1{ font-size:70px; line-height:1.07; max-width:780px; }
+  #s0 h1{ font-size:54px; line-height:1.1; max-width:780px; }
   #s0 .body{ max-width:740px; }
 
   /* призыв — акцент-маркер */
@@ -103,7 +103,7 @@
 
   /* ===== ЭКРАН 03 (Не завижу от людей): схема процессов ===== */
   #s2 .text-col{ width:760px; }
-  #s2 h1{ font-size:56px; line-height:1.09; max-width:720px; }
+  #s2 h1{ font-size:54px; line-height:1.1; max-width:720px; }
   #s2 .body{ max-width:700px; }
   .schema{ position:absolute; left:960px; top:50%; transform:translateY(-50%); width:880px;
     display:flex; flex-direction:column; gap:24px; }
@@ -169,11 +169,11 @@
     h1{ font-size:clamp(34px,8.4vw,52px); max-width:none; }
     .body{ font-size:clamp(15px,4vw,18px); max-width:none; margin-top:1.4em; }
     .benefit{ font-size:clamp(14px,3.7vw,17px); margin-top:1.7em; }
-    #s1 h1{ font-size:clamp(26px,6.6vw,34px); }
+    #s1 h1{ font-size:clamp(27px,6.4vw,38px); }
     .insight{ font-size:clamp(17px,4.6vw,21px); }
     #s1 .body{ font-size:clamp(15px,4vw,18px); }
     #s0 .text-col{ width:auto; }
-    #s0 h1{ font-size:clamp(33px,8.2vw,50px); }
+    #s0 h1{ font-size:clamp(30px,7.2vw,44px); }
     #s0 .body{ max-width:none; }
     .cta{ font-size:clamp(19px,5vw,23px); max-width:none; margin-top:1.6em; }
     .compare{ position:static; transform:none; width:100%; }
@@ -188,7 +188,7 @@
     .here{ font-size:clamp(10px,2.6vw,12px); }
     /* экран 03: схема горизонталь → вертикаль */
     #s2 .text-col{ width:auto; }
-    #s2 h1{ font-size:clamp(30px,7.6vw,44px); }
+    #s2 h1{ font-size:clamp(30px,7.2vw,44px); }
     .schema{ position:static; transform:none; width:100%; gap:16px; }
     .schema-pipe{ flex-direction:column; }
     .node{ flex:none; flex-direction:row; justify-content:flex-start; gap:14px; text-align:left; padding:16px 18px; }
@@ -424,6 +424,6 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
     fit();
   </script>
-  <!-- build 20260609-013535 -->
+  <!-- build 20260609-014531 -->
 </body>
 </html>
