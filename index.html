@@ -108,6 +108,11 @@
   /* реальная схема — изображение на белом, без подложки/рамки, СЛЕВА */
   .schema-img{ position:absolute; left:100px; top:50%; transform:translateY(-50%);
     width:800px; height:auto; display:block; }
+  /* акцент-плашка: что это за схема */
+  .proof{ margin-top:30px; max-width:760px; background:#F6F8FA; border:1px solid var(--line);
+    border-left:3px solid var(--accent); border-radius:12px; padding:18px 22px;
+    font-size:17px; line-height:1.5; color:var(--body); }
+  .proof b{ color:var(--ink); font-weight:700; }
 
   /* ----- тёмная карта (метрика) ----- */
   .card{ container-type:size; position:absolute; left:810px; top:120px; width:1010px; height:840px;
@@ -171,6 +176,7 @@
     /* экран 03: текст + схема-картинка в стек */
     #s2 .text-col{ left:auto; width:auto; }
     #s2 h1{ font-size:clamp(30px,7.2vw,44px); }
+    .proof{ font-size:clamp(14px,3.7vw,16px); max-width:none; }
     .schema-img{ position:static; transform:none; width:100%; height:auto; }
 
     /* карта: авто-высота, вертикальный стек, читаемые размеры (не container-units) */
@@ -349,7 +355,7 @@
           <div class="kicker">03 · система</div>
           <h1>Снижаю зависимость бизнеса от людей, включая меня</h1>
           <p class="body">Любой бизнес работает руками людей, но я снижаю зависимость от незаменимых, и от себя в том числе. Процессы и правила описаны, знание держит система, а не один человек. Замена не обнуляет результат: новый входит по инструкции, преемник продолжает по описанному. Так система работает и без меня, на любом штате.</p>
-          <p class="insight">3 <span class="ar">→</span> 100+ человек на <b>одной системе</b>.</p>
+          <p class="proof">Пример реальной схемы взаимодействия воронок в системе <b>Битрикс 24</b>. В этой схеме работало <b>более 40 сотрудников</b>.</p>
         </div>
 
         <img class="schema-img" src="assets/schema.svg" alt="Карта процессов компании — лиды, отделы, статусы, реализация">
@@ -371,6 +377,6 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
     fit();
   </script>
-  <!-- build 20260609-020351 -->
+  <!-- build 20260609-021353 -->
 </body>
 </html>
