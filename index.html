@@ -12,6 +12,7 @@
   :root{
     --ink:#11161F; --body:#36404F; --mute:#9AA3B2;
     --accent:#2F6BFF; --card-accent:#5AA0FF; --amber:#F7B500;
+    --line:#E9ECF1;
   }
   *{ box-sizing:border-box; margin:0; padding:0; }
   html,body{ height:100%; }
@@ -37,6 +38,43 @@
   .benefit{ font-size:22px; line-height:1.45; color:var(--body); margin-top:44px; display:flex; gap:12px; align-items:baseline; }
   .benefit .arrow{ color:var(--accent); font-weight:700; white-space:nowrap; }
   .benefit b{ font-weight:700; color:var(--ink); }
+
+  /* ----- слайд 1 (Инженер): заголовок-акцент ВНУТРИ тела (пересинхрон под ТЗ §5) ----- */
+  .lead{ font-weight:400; font-size:32px; line-height:1.42; color:var(--body); max-width:600px; }
+  .lead b{ font-weight:700; color:var(--ink); }
+
+  /* ===== ЭКРАН 0 (Знакомство): широкая колонка + бес­поковый блок «Резюме/Презентация» ===== */
+  #s0 .text-col{ width:820px; }
+  #s0 h1{ font-size:70px; line-height:1.07; max-width:780px; }
+  #s0 .body{ max-width:740px; }
+  .cta{ margin-top:40px; max-width:720px; padding:4px 0 4px 22px; border-left:3px solid var(--line);
+    font-weight:600; font-size:21px; line-height:1.42; color:var(--ink); }
+  .cta b{ color:var(--ink); font-weight:700; }
+  .compare{ position:absolute; left:960px; top:50%; transform:translateY(-50%);
+    width:860px; height:800px; border-radius:28px; background:#fff;
+    border:1px solid var(--line); box-shadow:0 36px 74px -34px rgba(13,23,48,.22);
+    padding:60px; display:flex; flex-direction:column; }
+  .badge{ align-self:flex-start; font-family:'IBM Plex Mono',monospace; font-size:15px;
+    letter-spacing:.12em; color:var(--mute); background:#F4F6F9; border:1px solid var(--line);
+    padding:9px 16px; border-radius:999px; margin-bottom:46px; }
+  .cmp-grid{ flex:1; display:grid; grid-template-columns:1fr 1fr; gap:26px; }
+  .cmp-card{ position:relative; border-radius:20px; padding:34px 30px; display:flex; flex-direction:column;
+    border:1px solid var(--line); background:#FAFBFC; }
+  .cmp-card.now{ border:1px solid var(--line); border-top:3px solid var(--amber); background:#fff;
+    box-shadow:0 22px 44px -28px rgba(13,23,48,.16); }
+  .cmp-eyebrow{ font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:.2em;
+    text-transform:uppercase; color:var(--mute); margin-bottom:24px; }
+  .cmp-card.now .cmp-eyebrow{ color:var(--ink); }
+  .cmp-ico{ width:54px; height:54px; margin-bottom:22px; }
+  .cmp-title{ font-weight:700; font-size:27px; line-height:1.18; letter-spacing:-.01em; color:var(--ink); margin-bottom:26px; }
+  .cmp-card:not(.now) .cmp-title{ color:#6B7686; font-weight:600; }
+  .chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top:auto; }
+  .chip{ font-size:17px; font-weight:500; padding:9px 15px; border-radius:999px;
+    background:#fff; border:1px solid var(--line); color:var(--mute); }
+  .cmp-card.now .chip{ color:var(--ink); border-color:var(--line); background:#fff; }
+  .here{ position:absolute; top:20px; right:20px; font-family:'IBM Plex Mono',monospace;
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:#11161F;
+    background:var(--amber); padding:6px 12px; border-radius:999px; font-weight:500; }
 
   /* ----- тёмная карта (метрика) ----- */
   .card{ container-type:size; position:absolute; left:810px; top:120px; width:1010px; height:840px;
@@ -79,6 +117,20 @@
     h1{ font-size:clamp(34px,8.4vw,52px); max-width:none; }
     .body{ font-size:clamp(15px,4vw,18px); max-width:none; margin-top:1.4em; }
     .benefit{ font-size:clamp(14px,3.7vw,17px); margin-top:1.7em; }
+    .lead{ font-size:clamp(20px,5.2vw,26px); max-width:none; }
+    #s0 .text-col{ width:auto; }
+    #s0 h1{ font-size:clamp(33px,8.2vw,50px); }
+    #s0 .body{ max-width:none; }
+    .cta{ font-size:clamp(16px,4.2vw,19px); max-width:none; margin-top:1.6em; }
+    .compare{ position:static; transform:none; width:100%; height:auto;
+      padding:clamp(24px,6.5vw,34px); border-radius:22px; box-shadow:0 22px 50px -34px rgba(13,23,48,.22); }
+    .badge{ font-size:clamp(12px,3.2vw,14px); margin-bottom:clamp(24px,6vw,34px); }
+    .cmp-grid{ grid-template-columns:1fr; gap:clamp(16px,4.5vw,22px); }
+    .cmp-card{ padding:clamp(22px,6vw,30px); }
+    .cmp-ico{ width:clamp(42px,11vw,52px); height:clamp(42px,11vw,52px); margin-bottom:16px; }
+    .cmp-title{ font-size:clamp(20px,5.4vw,25px); margin-bottom:18px; }
+    .chip{ font-size:clamp(14px,3.7vw,16px); }
+    .here{ font-size:clamp(10px,2.6vw,12px); }
 
     /* карта: авто-высота, вертикальный стек, читаемые размеры (не container-units) */
     .card{ container-type:normal; position:relative; left:auto; top:auto; width:100%; height:auto;
@@ -99,16 +151,57 @@
 <body>
   <div class="deck">
 
-    <!-- ===== ЭКРАН 1 ===== -->
-    <section class="screen" id="s1">
+    <!-- ===== ЭКРАН 0 · ЗНАКОМСТВО ===== -->
+    <section class="screen" id="s0">
       <div class="stage">
         <div class="corner">01 / 10</div>
 
         <div class="text-col">
-          <div class="kicker">01 · подход</div>
-          <h1>Смотрю на бизнес как инженер</h1>
-          <p class="body">Я инженер по образованию и на бизнес смотрю по-инженерному, как на проект: зачем, какой нужен результат, выдержит ли нагрузку, выгодно ли и нельзя ли проще. Поэтому я не просто управляю, а проектирую систему, которая будет управлять вместе со мной. Люди в ней важная часть, а все процессы ведут к общему результату, к маржинальному доходу.</p>
-          <p class="benefit"><span class="arrow">для вас →</span><span><b>меньше хаоса</b> / решения по цифрам, а не по интуиции</span></p>
+          <div class="kicker">01 · знакомство</div>
+          <h1>Подход, который работает почти в любом бизнесе</h1>
+          <p class="body">Здравствуйте, я Алексей Ширшов. Покажу свой подход к работе: он применим почти к любому бизнесу, а не только к стройке. В резюме — опыт и цифры, а здесь принципы, которыми руководствуюсь, рабочие инструменты и доказательства к ним. Десять слайдов, около семи минут.</p>
+          <p class="cta">За 7 минут вы поймёте обо мне больше, <b>чем за час собеседования</b></p>
+        </div>
+
+        <div class="compare">
+          <div class="badge">≈ 7 МИН · 10 СЛАЙДОВ</div>
+          <div class="cmp-grid">
+            <div class="cmp-card">
+              <div class="cmp-eyebrow">резюме</div>
+              <svg class="cmp-ico" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                <rect x="10" y="6" width="28" height="36" rx="4" stroke="#9AA3B2" stroke-width="2.2"/>
+                <line x1="16" y1="16" x2="32" y2="16" stroke="#9AA3B2" stroke-width="2.2" stroke-linecap="round"/>
+                <line x1="16" y1="23" x2="32" y2="23" stroke="#9AA3B2" stroke-width="2.2" stroke-linecap="round"/>
+                <line x1="16" y1="30" x2="26" y2="30" stroke="#9AA3B2" stroke-width="2.2" stroke-linecap="round"/>
+              </svg>
+              <div class="cmp-title">Опыт и цифры</div>
+              <div class="chips"><span class="chip">опыт</span><span class="chip">цифры</span><span class="chip">обязанности</span></div>
+            </div>
+            <div class="cmp-card now">
+              <div class="here">вы здесь</div>
+              <div class="cmp-eyebrow">презентация</div>
+              <svg class="cmp-ico" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                <rect x="7" y="9" width="34" height="24" rx="3.5" stroke="#F7B500" stroke-width="2.4"/>
+                <path d="M17 27 L22 21 L27 24 L33 16" stroke="#F7B500" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="24" y1="33" x2="24" y2="39" stroke="#F7B500" stroke-width="2.4" stroke-linecap="round"/>
+                <line x1="18" y1="40" x2="30" y2="40" stroke="#F7B500" stroke-width="2.4" stroke-linecap="round"/>
+              </svg>
+              <div class="cmp-title">Подход и доказательства</div>
+              <div class="chips"><span class="chip">подход</span><span class="chip">кейсы</span><span class="chip">доказательства</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ЭКРАН 1 · ИНЖЕНЕР ===== -->
+    <section class="screen" id="s1">
+      <div class="stage">
+        <div class="corner">02 / 10</div>
+
+        <div class="text-col">
+          <div class="kicker">02 · инженер</div>
+          <p class="lead">Я инженер из строительной сферы и любую задачу решаю как проект: что нужно сделать, какие требования и условия учесть. Поэтому <b>не просто управляю процессами, а проектирую систему, которая будет сама помогать в управлении</b>. Люди в ней важны, а процессы ведут к общему результату — деньгам компании.</p>
         </div>
 
         <div class="card">
@@ -209,6 +302,6 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
     fit();
   </script>
-  <!-- build 20260609-002246 -->
+  <!-- build 20260609-003633 -->
 </body>
 </html>
