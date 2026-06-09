@@ -152,6 +152,26 @@
     display:flex; align-items:center; justify-content:center; padding:36px; }
   .modal-media video, .modal-media img{ display:block; max-width:100%; max-height:100%; width:auto; height:auto;
     border-radius:12px; box-shadow:0 24px 50px -30px rgba(13,23,48,.4); }
+  /* галерея в модалке: авто-смена + стрелки + точки */
+  .gallery{ position:relative; width:100%; height:100%; }
+  .gslide{ position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:16px; padding:8px 58px; opacity:0; visibility:hidden; transition:opacity .45s ease; }
+  .gslide.active{ opacity:1; visibility:visible; }
+  .gcap{ text-align:center; max-width:600px; flex:none; }
+  .gcap b{ display:block; font-weight:700; font-size:19px; color:var(--ink); margin-bottom:5px; }
+  .gcap span{ font-family:'IBM Plex Mono',monospace; font-size:13px; line-height:1.45; color:var(--mute); }
+  .gframe{ border:1px solid var(--line); border-radius:12px; overflow:hidden; background:#fff;
+    box-shadow:0 20px 44px -30px rgba(13,23,48,.35); max-width:100%; max-height:calc(100% - 96px); }
+  .gframe img{ display:block; max-width:100%; max-height:100%; width:auto; height:auto; box-shadow:none; border-radius:0; }
+  .gnav{ position:absolute; top:50%; transform:translateY(-50%); width:46px; height:46px; border-radius:50%;
+    border:1px solid var(--line); background:rgba(255,255,255,.9); color:var(--ink); font-size:26px; line-height:1;
+    cursor:pointer; z-index:4; display:flex; align-items:center; justify-content:center; padding:0; }
+  .gnav:hover{ background:#fff; }
+  .gnav.prev{ left:6px; }
+  .gnav.next{ right:6px; }
+  .gdots{ position:absolute; bottom:10px; left:50%; transform:translateX(-50%); display:flex; gap:9px; z-index:4; }
+  .gdot{ width:9px; height:9px; border-radius:50%; background:var(--line); border:none; cursor:pointer; padding:0; }
+  .gdot.active{ background:var(--accent); }
   /* мобильный просмотрщик (pinch-zoom) */
   .viewer{ position:fixed; inset:0; z-index:70; display:none; background:#0B1020; }
   .viewer.open{ display:block; }
@@ -285,6 +305,10 @@
     .modal-media{ border-left:none; border-top:1px solid var(--line); padding:clamp(16px,5vw,28px); }
     .modal-media video, .modal-media img{ max-height:none; width:100%; }
     .modal-media img{ cursor:zoom-in; }
+    .modal-media .gallery{ height:72vh; }
+    .gslide{ padding:6px 42px; }
+    .gframe{ max-height:calc(100% - 84px); }
+    .gframe img{ width:auto; }
 
     /* экран 05: таблица ТО + текст/шаги в стек */
     #s4 .text-col{ left:auto; width:auto; }
@@ -506,6 +530,7 @@
           <div class="slider-cap">Скриншот из <b>собственной академии</b>, в которой мы обучали новых сотрудников</div>
           <div class="slider" id="slider">
             <img class="slide active" src="assets/academy.png" alt="Академия — список обучающих модулей">
+            <img class="slide" src="assets/gc-module.png" alt="Модуль академии — разделы по системам компании">
             <img class="slide" src="assets/lesson.png" alt="Урок академии — авторское видео и презентация">
           </div>
         </div>
@@ -570,9 +595,22 @@
       <div class="modal-body">
         <h2 class="modal-h">Отдел контроля качества: помогает, а не карает</h2>
         <p class="modal-text">Отдел контроля качества по расписанию проверяет продажи, расчёты, сервис и финансы: на скрипты, регламенты, метрики и аномалии. Сначала подсказывает и даёт время на исправление, помогает разобраться. И только потом, если ошибка системна, фиксирует отклонение в отчёте для руководителя. Так у руководителей снижаются трудозатраты, и они могут заниматься более эффективной работой, а сотрудники понимают, что есть контроль, и начинают более качественно выполнять процессы.</p>
-        <div class="tg-cap">из телеграм-отчёта ОКК · соблюдение скриптов <b>87–100%</b> · фамилии скрыты (NDA)</div>
       </div>
-      <div class="modal-media"><img src="assets/tg-okk-clean.png" alt="Отчёт ОКК — соблюдение скриптов" id="tgImg"></div>
+      <div class="modal-media">
+        <div class="gallery" data-auto="5500">
+          <div class="gslide active">
+            <div class="gcap"><b>ОКК · отдел продаж</b><span>оценка соблюдения скрипта по этапам разговора, по каждому менеджеру — 75–100%</span></div>
+            <div class="gframe"><img src="assets/okk-srez.png" alt="Отчёт ОКК — оценки по этапам разговора, фамилия скрыта (NDA)"></div>
+          </div>
+          <div class="gslide">
+            <div class="gcap"><b>ОКК · финансы</b><span>проверяет, что расходы по объектам разнесены — точные отчёты по каждому объекту</span></div>
+            <div class="gframe"><img src="assets/okk-fin.png" alt="Отчёт ОКК по финансам — суммы скрыты (NDA)"></div>
+          </div>
+          <button class="gnav prev" data-gprev aria-label="Назад">‹</button>
+          <button class="gnav next" data-gnext aria-label="Вперёд">›</button>
+          <div class="gdots"></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -628,13 +666,31 @@
     }
 
     // мобильный pinch-zoom для плотных скринов в модалках
-    const tgImg = document.getElementById('tgImg');
-    tgImg && tgImg.addEventListener('click', ()=>{ if(mqMobile.matches) openViewer('assets/tg-okk-clean.png'); });
+    // галереи в модалках: авто-смена + стрелки + точки, пауза при наведении
+    document.querySelectorAll('.gallery').forEach(g=>{
+      const slides=[...g.querySelectorAll('.gslide')];
+      const dotsWrap=g.querySelector('.gdots');
+      const interval=parseInt(g.dataset.auto)||5000;
+      let idx=0, timer=null;
+      slides.forEach((s,i)=>{
+        const d=document.createElement('button'); d.className='gdot'+(i?'':' active'); d.addEventListener('click',()=>go(i)); dotsWrap.appendChild(d);
+        const im=s.querySelector('img'); im && im.addEventListener('click',()=>{ if(mqMobile.matches) openViewer(im.getAttribute('src')); });
+      });
+      const dots=[...dotsWrap.children];
+      function show(i){ slides[idx].classList.remove('active'); dots[idx].classList.remove('active'); idx=(i+slides.length)%slides.length; slides[idx].classList.add('active'); dots[idx].classList.add('active'); }
+      function play(){ clearInterval(timer); timer=setInterval(()=>show(idx+1), interval); }
+      function go(i){ show(i); play(); }
+      g.querySelector('[data-gnext]').addEventListener('click',()=>go(idx+1));
+      g.querySelector('[data-gprev]').addEventListener('click',()=>go(idx-1));
+      g.addEventListener('mouseenter',()=>clearInterval(timer));
+      g.addEventListener('mouseleave',play);
+      play();
+    });
     const toImg = document.getElementById('toImg');
     toImg && toImg.addEventListener('click', ()=>{ if(mqMobile.matches) openViewer('assets/to-margin.png'); });
     viewer && viewer.querySelector('[data-vclose]').addEventListener('click', closeViewer);
     document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeModals(); viewer && viewer.classList.remove('open'); document.body.style.overflow=''; } });
   </script>
-  <!-- build 20260609-131059 -->
+  <!-- build 20260609-145624 -->
 </body>
 </html>
