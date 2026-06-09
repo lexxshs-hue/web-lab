@@ -123,11 +123,10 @@
   .dig:hover .dig-arrow{ background:#FFD04A; box-shadow:0 0 0 4px rgba(247,181,0,.25); }
   /* академия — слайдер на белом, без рамки (картинки одного размера → не прыгает) */
   .slider-wrap{ position:absolute; left:810px; top:50%; transform:translateY(-50%); width:1010px;
-    display:flex; flex-direction:column; background:#fff; border:1px solid var(--line); border-radius:16px;
-    overflow:hidden; box-shadow:0 22px 48px -30px rgba(13,23,48,.32); }
-  /* плашка-«шапка»: примыкает к скрину, единая конструкция (скругление сверху, скрин снизу) */
-  .slider-cap{ background:#F6F8FA; padding:18px 24px; font-size:23px; line-height:1.4; color:var(--body);
-    border-bottom:1px solid var(--line); }
+    display:flex; flex-direction:column; background:#fff; border:1px solid var(--line); border-top:3px solid var(--accent);
+    border-radius:16px; overflow:hidden; box-shadow:0 22px 48px -30px rgba(13,23,48,.32); }
+  /* плашка-«шапка»: примыкает к скрину, единая конструкция (синяя линия сверху — как блок на сл.1) */
+  .slider-cap{ background:#F6F8FA; padding:18px 24px; font-size:23px; line-height:1.4; color:var(--body); }
   .slider-cap b{ color:var(--ink); font-weight:700; }
   .slider{ position:relative; width:100%; aspect-ratio:1700 / 1307; }
   .slide{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; opacity:0;
@@ -188,10 +187,9 @@
   #s4 .body{ max-width:810px; margin-top:30px; }
   /* реальная таблица ТО — слева, единая карта: заголовок примыкает к скрину */
   .to-art{ position:absolute; left:100px; top:50%; transform:translateY(-50%); width:850px;
-    display:flex; flex-direction:column; background:#fff; border:1px solid var(--line); border-radius:16px;
-    overflow:hidden; box-shadow:0 22px 48px -30px rgba(13,23,48,.32); }
-  .to-cap{ background:#F6F8FA; padding:18px 24px; font-size:23px; line-height:1.4; color:var(--body);
-    border-bottom:1px solid var(--line); }
+    display:flex; flex-direction:column; background:#fff; border:1px solid var(--line); border-top:3px solid var(--accent);
+    border-radius:16px; overflow:hidden; box-shadow:0 22px 48px -30px rgba(13,23,48,.32); }
+  .to-cap{ background:#F6F8FA; padding:18px 24px; font-size:23px; line-height:1.4; color:var(--body); }
   .to-cap b{ color:var(--ink); font-weight:700; }
   .to-frame{ display:block; }
   .to-frame img{ display:block; width:100%; height:auto; }
@@ -221,10 +219,9 @@
     font-weight:700; font-size:25px; line-height:1.34; color:var(--ink); letter-spacing:-.01em; }
   .quote span{ color:var(--amber); }
   .fin-art{ position:absolute; left:900px; top:50%; transform:translateY(-50%); width:915px;
-    display:flex; flex-direction:column; background:#fff; border:1px solid var(--line); border-radius:16px;
-    overflow:hidden; box-shadow:0 22px 48px -30px rgba(13,23,48,.32); }
-  .fin-cap{ background:#F6F8FA; padding:18px 24px; font-size:23px; line-height:1.4; color:var(--body);
-    border-bottom:1px solid var(--line); }
+    display:flex; flex-direction:column; background:#fff; border:1px solid var(--line); border-top:3px solid var(--accent);
+    border-radius:16px; overflow:hidden; box-shadow:0 22px 48px -30px rgba(13,23,48,.32); }
+  .fin-cap{ background:#F6F8FA; padding:18px 24px; font-size:23px; line-height:1.4; color:var(--body); }
   .fin-cap b{ color:var(--ink); font-weight:700; }
   .fin-frame{ display:block; }
   .fin-frame img{ display:block; width:100%; height:auto; }
@@ -698,6 +695,6 @@
     viewer && viewer.querySelector('[data-vclose]').addEventListener('click', closeViewer);
     document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeModals(); viewer && viewer.classList.remove('open'); document.body.style.overflow=''; } });
   </script>
-  <!-- build 20260609-163152 -->
+  <!-- build 20260609-164917 -->
 </body>
 </html>
