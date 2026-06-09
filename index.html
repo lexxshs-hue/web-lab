@@ -161,24 +161,34 @@
   .viewer-close{ position:fixed; top:14px; right:14px; z-index:71; width:46px; height:46px; border-radius:50%;
     border:none; background:rgba(255,255,255,.16); color:#fff; font-size:24px; line-height:1; }
 
-  /* ===== ЭКРАН 05 (Приоритеты): лента шагов + результат ===== */
-  #s4 .text-col{ width:760px; }
-  #s4 h1{ font-size:54px; line-height:1.1; max-width:720px; }
-  #s4 .body{ max-width:720px; }
-  .flow{ position:absolute; left:960px; top:50%; transform:translateY(-50%); width:860px; display:flex; flex-direction:column; }
-  .step{ position:relative; display:flex; align-items:flex-start; gap:22px; padding-bottom:30px; }
-  .step:not(:last-of-type)::before{ content:""; position:absolute; left:24px; top:54px; bottom:-2px; width:2px; background:var(--line); }
-  .step-n{ flex:none; width:50px; height:50px; border-radius:50%; border:2px solid var(--accent); color:var(--accent);
-    background:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:20px; z-index:1; }
-  .step-b{ padding-top:6px; }
-  .step-b b{ display:block; font-weight:700; font-size:21px; color:var(--ink); letter-spacing:-.01em; margin-bottom:3px; }
-  .step-b span{ font-size:16px; color:var(--body); }
-  .result{ margin-top:6px; display:flex; align-items:baseline; gap:13px; flex-wrap:wrap;
-    background:#F6F8FA; border:1px solid var(--line); border-left:3px solid var(--amber); border-radius:14px; padding:20px 24px; }
+  /* ===== ЭКРАН 05 (Приоритеты): таблица ТО СЛЕВА, текст + компактные шаги СПРАВА ===== */
+  #s4 .text-col{ left:980px; width:840px; }
+  #s4 h1{ font-size:54px; line-height:1.1; max-width:800px; }
+  #s4 .body{ max-width:820px; margin-top:30px; }
+  /* реальная таблица ТО — слева, плоская рамка на белом */
+  .to-art{ position:absolute; left:100px; top:50%; transform:translateY(-50%); width:800px;
+    display:flex; flex-direction:column; gap:16px; }
+  .to-cap{ background:#F6F8FA; border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:12px;
+    padding:16px 20px; font-size:17px; line-height:1.45; color:var(--body); }
+  .to-cap b{ color:var(--ink); font-weight:700; }
+  .to-frame{ border:1px solid var(--line); border-radius:12px; overflow:hidden; box-shadow:0 20px 44px -30px rgba(13,23,48,.3); }
+  .to-frame img{ display:block; width:100%; height:auto; }
+  /* компактная лента шагов внутри текста (1→2→3→4) */
+  .steps-mini{ display:flex; flex-wrap:wrap; align-items:center; gap:10px 11px; margin-top:32px; max-width:840px; }
+  .sm{ display:inline-flex; align-items:center; gap:10px; background:#F6F8FA; border:1px solid var(--line);
+    border-radius:999px; padding:8px 17px 8px 8px; }
+  .sm i{ flex:none; width:28px; height:28px; border-radius:50%; background:#fff; border:1.5px solid var(--accent);
+    color:var(--accent); font-style:normal; font-weight:700; font-size:14px; display:flex; align-items:center; justify-content:center; }
+  .sm b{ font-weight:600; font-size:17px; color:var(--ink); }
+  .sm-arr{ color:var(--accent); font-weight:800; font-size:18px; }
+  /* результат 70→130 */
+  .result{ margin-top:30px; display:inline-flex; align-items:baseline; gap:13px; flex-wrap:wrap;
+    background:#F6F8FA; border:1px solid var(--line); border-left:3px solid var(--amber); border-radius:14px; padding:18px 24px; }
   .r-from{ font-family:'IBM Plex Mono',monospace; font-size:24px; color:var(--mute); }
   .r-arrow{ color:var(--amber); font-weight:800; font-size:26px; }
-  .r-to{ font-weight:800; font-size:46px; line-height:1; color:var(--amber); letter-spacing:-.02em; }
+  .r-to{ font-weight:800; font-size:44px; line-height:1; color:var(--amber); letter-spacing:-.02em; }
   .r-label{ font-size:16px; color:var(--body); align-self:center; }
+  #s4 .dig{ margin-top:30px; }
 
   /* ----- тёмная карта (метрика) ----- */
   .card{ container-type:size; position:absolute; left:810px; top:120px; width:1010px; height:840px;
@@ -260,11 +270,17 @@
     .modal-media video, .modal-media img{ max-height:none; width:100%; }
     .modal-media img{ cursor:zoom-in; }
 
-    /* экран 05: лента шагов в стек */
+    /* экран 05: таблица ТО + текст/шаги в стек */
+    #s4 .text-col{ left:auto; width:auto; }
     #s4 h1{ font-size:clamp(30px,7.2vw,44px); }
-    .flow{ position:static; transform:none; width:100%; }
-    .step-b b{ font-size:clamp(18px,4.8vw,21px); }
-    .r-to{ font-size:clamp(38px,12vw,46px); }
+    .to-art{ position:static; transform:none; width:100%; }
+    .to-cap{ font-size:clamp(14px,3.7vw,16px); }
+    .steps-mini{ margin-top:1.6em; gap:8px; flex-direction:column; align-items:flex-start; }
+    .sm b{ font-size:clamp(14px,3.9vw,16px); }
+    .sm-arr{ display:none; }
+    .result{ margin-top:1.4em; }
+    .r-to{ font-size:clamp(38px,12vw,44px); }
+    #s4 .dig{ margin-top:1.6em; }
 
     /* карта: авто-высота, вертикальный стек, читаемые размеры (не container-units) */
     .card{ container-type:normal; position:relative; left:auto; top:auto; width:100%; height:auto;
@@ -473,7 +489,7 @@
       </div>
     </section>
 
-    <!-- ===== ЭКРАН 05 · ПРИОРИТЕТЫ ===== -->
+    <!-- ===== ЭКРАН 05 · ПРИОРИТЕТЫ (таблица ТО слева, текст+шаги справа) ===== -->
     <section class="screen" id="s4">
       <div class="stage">
         <div class="corner">05 / 10</div>
@@ -481,19 +497,23 @@
         <div class="text-col">
           <div class="kicker">05 · приоритеты</div>
           <h1>Навожу порядок по приоритетам, не ломая рабочее</h1>
-          <p class="body">Захожу по шагам: сначала закрываю срочное и забочусь о деньгах, потом нахожу проблемы и расставляю приоритеты. Что работает, не трогаю, а усиливаю. По отчётам вижу, где сбоит и где перегруз, и убираю ручную работу. Улучшаю постоянно, но комфортно для людей. Так менеджер за три месяца стал вести 130+ клиентов вместо прежних 70.</p>
+          <p class="body">Захожу по шагам: сначала закрываю срочное и забочусь о деньгах, потом нахожу проблемы и расставляю приоритеты. Что работает, не трогаю, а усиливаю. По отчётам вижу, где сбоит и где перегруз, и убираю ручную работу. Улучшаю постоянно, но комфортно для людей.</p>
+          <div class="steps-mini">
+            <span class="sm"><i>1</i><b>Срочное и деньги</b></span><span class="sm-arr">→</span>
+            <span class="sm"><i>2</i><b>Анализ и приоритеты</b></span><span class="sm-arr">→</span>
+            <span class="sm"><i>3</i><b>Усиливаю работающее</b></span><span class="sm-arr">→</span>
+            <span class="sm"><i>4</i><b>Убираю рутину</b></span>
+          </div>
+          <div class="result"><span class="r-from">70</span><span class="r-arrow">→</span><span class="r-to">130+</span><span class="r-label">клиентов на одном менеджере · за 3 месяца</span></div>
           <div class="dig" data-modal-target="modal-tpl">
             <span class="dig-line">Шаблоны расчётов — как подняли количество и снизили ошибки</span>
             <div class="dig-arrow">→</div>
           </div>
         </div>
 
-        <div class="flow">
-          <div class="step"><span class="step-n">1</span><div class="step-b"><b>Срочное и деньги</b><span>закрываю первым</span></div></div>
-          <div class="step"><span class="step-n">2</span><div class="step-b"><b>Анализ и приоритеты</b><span>нахожу реальные проблемы</span></div></div>
-          <div class="step"><span class="step-n">3</span><div class="step-b"><b>Усиливаю работающее</b><span>что работает — не трогаю</span></div></div>
-          <div class="step"><span class="step-n">4</span><div class="step-b"><b>Постоянно улучшаю</b><span>убираю ручную работу</span></div></div>
-          <div class="result"><span class="r-from">70</span><span class="r-arrow">→</span><span class="r-to">130+</span><span class="r-label">клиентов на одном менеджере · за 3 месяца</span></div>
+        <div class="to-art">
+          <div class="to-cap">Юнит-экономика по каждому клиенту ТО · цветом — здоровье маржи · <b>суммы и названия под NDA</b></div>
+          <div class="to-frame"><img src="assets/to-margin.png" alt="Таблица юнит-экономики по клиентам ТО — маржа с цветовой логикой, данные обезличены" id="toImg"></div>
         </div>
       </div>
     </section>
@@ -568,9 +588,11 @@
     // мобильный pinch-zoom для плотных скринов в модалках
     const tgImg = document.getElementById('tgImg');
     tgImg && tgImg.addEventListener('click', ()=>{ if(mqMobile.matches) openViewer('assets/tg-okk-clean.png'); });
+    const toImg = document.getElementById('toImg');
+    toImg && toImg.addEventListener('click', ()=>{ if(mqMobile.matches) openViewer('assets/to-margin.png'); });
     viewer && viewer.querySelector('[data-vclose]').addEventListener('click', closeViewer);
     document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeModals(); viewer && viewer.classList.remove('open'); document.body.style.overflow=''; } });
   </script>
-  <!-- build 20260609-121754 -->
+  <!-- build 20260609-124708 -->
 </body>
 </html>
