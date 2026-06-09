@@ -178,7 +178,7 @@
   .vid-cap b{ display:block; font-weight:700; font-size:19px; color:var(--ink); margin-bottom:5px; }
   .vid-cap span{ font-family:'IBM Plex Mono',monospace; font-size:13px; line-height:1.45; color:var(--mute); }
   .vid-frame{ border:1px solid var(--line); border-radius:12px; overflow:hidden; box-shadow:0 20px 44px -30px rgba(13,23,48,.35); max-width:100%; max-height:calc(100% - 92px); }
-  .vid-frame video{ display:block; max-width:100%; max-height:100%; width:auto; height:auto; box-shadow:none; border-radius:0; }
+  .vid-frame video{ display:block; max-width:100%; max-height:100%; width:auto; height:auto; box-shadow:none; border-radius:0; pointer-events:none; }
   /* текстовый вкладыш (кейс) — одна колонка, без медиа */
   .modal-sheet.solo{ grid-template-columns:1fr; }
   .modal-sheet.solo .modal-body{ max-width:1240px; margin:0 auto; padding:56px 60px; overflow:auto; justify-content:flex-start; }
@@ -287,9 +287,9 @@
 
   /* ===== МОБАЙЛ (≤860px): снап выкл, одна колонка; карта раскладывается вертикально ===== */
   @media (max-width:860px){
-    html,body{ height:auto; }
+    html,body{ height:auto; overflow-x:hidden; max-width:100%; }
     body{ background:#fff; }
-    .deck{ height:auto; overflow:visible; overflow-x:hidden; scroll-snap-type:none; }
+    .deck{ height:auto; overflow:visible; scroll-snap-type:none; }
     .screen{ height:auto; min-height:100svh; overflow:hidden;
       padding: clamp(36px,10vw,56px) clamp(20px,6vw,30px) clamp(40px,12vw,60px); }
     .stage{ position:static; transform:none; width:100%; max-width:100%; height:auto;
@@ -798,6 +798,6 @@
     viewer && viewer.querySelector('[data-vclose]').addEventListener('click', closeViewer);
     document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeModals(); viewer && viewer.classList.remove('open'); document.body.style.overflow=''; } });
   </script>
-  <!-- build 20260609-181713 -->
+  <!-- build 20260609-182331 -->
 </body>
 </html>
