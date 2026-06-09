@@ -132,27 +132,26 @@
   .slide{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; opacity:0;
     transition:opacity .8s ease; transform:translateZ(0); will-change:opacity; }
   .slide.active{ opacity:1; }
-  /* модалка */
+  /* модалка — почти полноэкранная, 2 колонки: текст слева + медиа справа (без внутр. скролла) */
   .modal{ position:fixed; inset:0; z-index:60; display:none; }
   .modal.open{ display:flex; }
-  .modal-bd{ position:absolute; inset:0; background:rgba(8,14,28,.60); backdrop-filter:blur(3px); }
-  .modal-sheet{ position:relative; margin:auto; width:min(860px,92vw); max-height:88vh; overflow:auto;
-    background:#fff; border-radius:26px; padding:58px; box-shadow:0 50px 120px -30px rgba(8,14,28,.6); }
-  .modal-close{ position:absolute; top:22px; right:24px; width:42px; height:42px; border-radius:50%;
-    border:1px solid var(--line); background:#fff; color:var(--body); font-size:22px; cursor:pointer; line-height:1; }
+  .modal-bd{ position:absolute; inset:0; background:rgba(8,14,28,.62); backdrop-filter:blur(3px); }
+  .modal-sheet{ position:relative; margin:auto; width:94vw; max-width:1480px; height:90vh;
+    background:#fff; border-radius:22px; overflow:hidden; box-shadow:0 50px 120px -30px rgba(8,14,28,.6);
+    display:grid; grid-template-columns:minmax(340px,400px) 1fr; }
+  .modal-close{ position:absolute; top:18px; right:18px; z-index:3; width:52px; height:52px; border-radius:50%;
+    border:1px solid var(--line); background:#fff; color:var(--body); font-size:26px; cursor:pointer; line-height:1; }
   .modal-close:hover{ background:#F4F6F9; }
-  .modal-h{ font-weight:800; font-size:34px; line-height:1.14; letter-spacing:-.01em; margin-bottom:22px; max-width:640px; }
-  .modal-text{ font-size:20px; line-height:1.56; color:var(--body); }
-  .tg{ margin-top:14px; width:100%; border-radius:16px; overflow:hidden;
-    box-shadow:0 24px 50px -28px rgba(13,23,48,.5); border:1px solid #223; }
-  .tg img{ display:block; width:100%; height:auto; }
-  .tg-cap{ font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--mute); margin-top:30px; }
+  .modal-body{ padding:52px 44px; display:flex; flex-direction:column; justify-content:center; overflow:auto; }
+  .modal-h{ font-weight:800; font-size:27px; line-height:1.18; letter-spacing:-.01em; margin-bottom:18px; }
+  .modal-text{ font-size:17px; line-height:1.6; color:var(--body); }
+  .tg-cap{ font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--mute); margin-top:24px; }
   .tg-cap b{ color:var(--ink); }
-  /* светлый скрин в модалке (шаблон) */
-  .mimg{ margin-top:14px; width:100%; border-radius:14px; overflow:hidden; border:1px solid var(--line);
-    box-shadow:0 20px 44px -30px rgba(13,23,48,.3); }
-  .mimg img{ display:block; width:100%; height:auto; }
-  .mimg video{ display:block; width:100%; height:auto; }
+  /* правая колонка-медиа: артефакт всегда вписан целиком, без скролла */
+  .modal-media{ background:#F3F5F8; border-left:1px solid var(--line); min-width:0;
+    display:flex; align-items:center; justify-content:center; padding:36px; }
+  .modal-media video, .modal-media img{ display:block; max-width:100%; max-height:100%; width:auto; height:auto;
+    border-radius:12px; box-shadow:0 24px 50px -30px rgba(13,23,48,.4); }
   /* мобильный просмотрщик (pinch-zoom) */
   .viewer{ position:fixed; inset:0; z-index:70; display:none; background:#0B1020; }
   .viewer.open{ display:block; }
@@ -253,10 +252,13 @@
     .slider-wrap{ position:static; transform:none; width:100%; }
     .slider-cap{ font-size:clamp(14px,3.7vw,16px); padding:13px 16px; }
     .modal-sheet{ width:100vw; max-width:100vw; height:100svh; max-height:100svh; border-radius:0;
-      padding:clamp(54px,9vw,58px) clamp(22px,6vw,28px) clamp(40px,12vw,58px); }
-    .modal-h{ font-size:clamp(24px,6.4vw,32px); }
-    .modal-text{ font-size:clamp(15px,4vw,18px); }
-    .tg img{ cursor:zoom-in; }
+      display:flex; flex-direction:column; overflow:auto; }
+    .modal-body{ padding:clamp(56px,11vw,64px) clamp(20px,6vw,26px) clamp(18px,5vw,24px); justify-content:flex-start; overflow:visible; }
+    .modal-h{ font-size:clamp(23px,6vw,28px); }
+    .modal-text{ font-size:clamp(15px,4vw,17px); }
+    .modal-media{ border-left:none; border-top:1px solid var(--line); padding:clamp(16px,5vw,28px); }
+    .modal-media video, .modal-media img{ max-height:none; width:100%; }
+    .modal-media img{ cursor:zoom-in; }
 
     /* экран 05: лента шагов в стек */
     #s4 h1{ font-size:clamp(30px,7.2vw,44px); }
@@ -503,10 +505,12 @@
     <div class="modal-bd" data-close></div>
     <div class="modal-sheet">
       <button class="modal-close" data-close>×</button>
-      <h2 class="modal-h">Отдел контроля качества: помогает, а не карает</h2>
-      <p class="modal-text">Отдел контроля качества по расписанию проверяет продажи, расчёты, сервис и финансы: на скрипты, регламенты, метрики и аномалии. Сначала подсказывает и даёт время на исправление, помогает разобраться. И только потом, если ошибка системна, фиксирует отклонение в отчёте для руководителя. Так у руководителей снижаются трудозатраты, и они могут заниматься более эффективной работой, а сотрудники понимают, что есть контроль, и начинают более качественно выполнять процессы.</p>
-      <div class="tg-cap">из телеграм-отчёта ОКК · соблюдение скриптов <b>87–100%</b> · фамилии скрыты (NDA)</div>
-      <div class="tg"><img src="assets/tg-okk-clean.png" alt="Отчёт ОКК — соблюдение скриптов" id="tgImg"></div>
+      <div class="modal-body">
+        <h2 class="modal-h">Отдел контроля качества: помогает, а не карает</h2>
+        <p class="modal-text">Отдел контроля качества по расписанию проверяет продажи, расчёты, сервис и финансы: на скрипты, регламенты, метрики и аномалии. Сначала подсказывает и даёт время на исправление, помогает разобраться. И только потом, если ошибка системна, фиксирует отклонение в отчёте для руководителя. Так у руководителей снижаются трудозатраты, и они могут заниматься более эффективной работой, а сотрудники понимают, что есть контроль, и начинают более качественно выполнять процессы.</p>
+        <div class="tg-cap">из телеграм-отчёта ОКК · соблюдение скриптов <b>87–100%</b> · фамилии скрыты (NDA)</div>
+      </div>
+      <div class="modal-media"><img src="assets/tg-okk-clean.png" alt="Отчёт ОКК — соблюдение скриптов" id="tgImg"></div>
     </div>
   </div>
 
@@ -515,10 +519,12 @@
     <div class="modal-bd" data-close></div>
     <div class="modal-sheet">
       <button class="modal-close" data-close>×</button>
-      <h2 class="modal-h">Шаблоны вместо дополнительных сотрудников</h2>
-      <p class="modal-text">Проектировщиков не хватало под расчёты и аудиты рабочей документации. Сделал шаблоны расчётов с готовыми решениями и поставщиками и чек-листы аудита, которые сами заполняют файл для клиента с комментариями. В итоге за день один проектировщик стал делать больше расчётов и аудитов, а качество выровнялось.</p>
-      <div class="tg-cap">сервис генерации аудита РД · форма → готовый PDF · <b>демо-данные, без NDA</b></div>
-      <div class="mimg"><video src="assets/pdf-gen.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Сервис генерации аудита рабочей документации: форма заполняется и собирает готовый PDF" id="tplVid"></video></div>
+      <div class="modal-body">
+        <h2 class="modal-h">Шаблоны вместо дополнительных сотрудников</h2>
+        <p class="modal-text">Проектировщиков не хватало под расчёты и аудиты рабочей документации. Сделал шаблоны расчётов с готовыми решениями и поставщиками и чек-листы аудита, которые сами заполняют файл для клиента с комментариями. В итоге за день один проектировщик стал делать больше расчётов и аудитов, а качество выровнялось.</p>
+        <div class="tg-cap">сервис генерации аудита РД · форма → готовый PDF · <b>демо-данные, без NDA</b></div>
+      </div>
+      <div class="modal-media"><video src="assets/pdf-gen.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Сервис генерации аудита рабочей документации: форма заполняется и собирает готовый PDF" id="tplVid"></video></div>
     </div>
   </div>
 
@@ -565,6 +571,6 @@
     viewer && viewer.querySelector('[data-vclose]').addEventListener('click', closeViewer);
     document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeModals(); viewer && viewer.classList.remove('open'); document.body.style.overflow=''; } });
   </script>
-  <!-- build 20260609-120749 -->
+  <!-- build 20260609-121754 -->
 </body>
 </html>
