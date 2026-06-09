@@ -237,6 +237,16 @@
     opacity:0; transition:opacity .8s ease; transform:translateZ(0); will-change:opacity; }
   .fin-slide.active{ opacity:1; }
 
+  /* ===== ЭКРАН 07 (Когда горит): шахматка СЛЕВА (.to-art), текст + список СПРАВА ===== */
+  #s6 .text-col{ left:1078px; width:742px; }
+  #s6 h1{ font-size:50px; line-height:1.1; max-width:720px; }
+  #s6 .body{ font-size:21px; max-width:730px; margin-top:26px; }
+  .built{ margin-top:30px; }
+  .built-h{ font-family:'IBM Plex Mono',monospace; font-size:15px; letter-spacing:.12em; text-transform:uppercase; color:var(--mute); }
+  .built-list{ list-style:none; display:flex; flex-direction:column; gap:11px; margin-top:15px; max-width:700px; }
+  .built-list li{ position:relative; padding-left:30px; font-size:20px; line-height:1.35; color:var(--ink); }
+  .built-list li::before{ content:"✓"; position:absolute; left:0; top:0; color:var(--accent); font-weight:800; }
+
   /* ----- тёмная карта (метрика) ----- */
   .card{ container-type:size; position:absolute; left:810px; top:120px; width:1010px; height:840px;
     aspect-ratio:1010/840; border-radius:28px; overflow:hidden;
@@ -339,6 +349,12 @@
     .quote{ font-size:clamp(18px,4.8vw,22px); max-width:none; margin-top:1.6em; }
     .fin-art{ position:static; transform:none; width:100%; }
     .fin-cap{ font-size:clamp(15px,4vw,18px); }
+
+    /* экран 07: шахматка + текст/список в стек */
+    #s6 .text-col{ left:auto; width:auto; }
+    #s6 h1{ font-size:clamp(28px,6.8vw,40px); }
+    #s6 .body{ font-size:clamp(15px,4vw,18px); }
+    .built-list li{ font-size:clamp(15px,4vw,17px); }
 
     /* карта: авто-высота, вертикальный стек, читаемые размеры (не container-units) */
     .card{ container-type:normal; position:relative; left:auto; top:auto; width:100%; height:auto;
@@ -586,9 +602,36 @@
         <div class="fin-art">
           <div class="fin-cap" id="finCap"></div>
           <div class="fin-slider" id="finSlider">
-            <img class="fin-slide active" src="assets/fin-report.png" data-cap="Авторское API + баланс + финансовый отчёт по объекту — есть у каждого объекта" alt="Финансовый отчёт по объекту — баланс и ОПиУ">
+            <img class="fin-slide active" src="assets/fin-report.png" data-cap="Создал автоматический фин. отчёт под каждый объект: ОПиУ + Баланс + ДДС" alt="Финансовый отчёт по объекту — ОПиУ, баланс, ДДС">
             <img class="fin-slide" src="assets/fin-unit.png" data-cap="Таблица расчёта юнит-экономики по клиентам на техническом обслуживании" alt="Юнит-экономика по клиентам ТО — без названий объектов">
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ЭКРАН 07 · КОГДА ГОРИТ (шахматка слева, текст+список справа) ===== -->
+    <section class="screen" id="s6">
+      <div class="stage">
+        <div class="corner">07 / 10</div>
+
+        <div class="text-col">
+          <div class="kicker">07 · когда горит</div>
+          <h1>Когда горит, разбираюсь сам и учу систему на ошибках</h1>
+          <p class="body">На объекте партнёров, где начались проблемы с управлением, я подключился: за три недели собрал команду, навёл порядок и наладил работу с заказчиком. Перестроил процессы, разобрал ошибки и внедрил новые элементы системы, чтобы не повторялись. Через четыре месяца передал объект новому руководителю, и команда сдала его без меня.</p>
+          <div class="built">
+            <div class="built-h">Что выстроил на объекте</div>
+            <ul class="built-list">
+              <li>Найм не на руководителе</li>
+              <li>Отчётность по объекту и выработке</li>
+              <li>Сдельная оплата</li>
+              <li>Ежедневный план</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="to-art">
+          <div class="to-cap">Шахматка по объекту: прогресс работ по этажам и системам · <b>архив</b></div>
+          <div class="to-frame"><img src="assets/shahmatka.png" alt="Шахматка по объекту — матрица прогресса работ по этажам и системам" id="shahImg"></div>
         </div>
       </div>
     </section>
@@ -714,9 +757,11 @@
     });
     const toImg = document.getElementById('toImg');
     toImg && toImg.addEventListener('click', ()=>{ if(mqMobile.matches) openViewer('assets/s4-bitrix.png'); });
+    const shahImg = document.getElementById('shahImg');
+    shahImg && shahImg.addEventListener('click', ()=>{ if(mqMobile.matches) openViewer('assets/shahmatka.png'); });
     viewer && viewer.querySelector('[data-vclose]').addEventListener('click', closeViewer);
     document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeModals(); viewer && viewer.classList.remove('open'); document.body.style.overflow=''; } });
   </script>
-  <!-- build 20260609-172827 -->
+  <!-- build 20260609-173759 -->
 </body>
 </html>
