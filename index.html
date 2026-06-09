@@ -122,14 +122,16 @@
     background:var(--amber); display:flex; align-items:center; justify-content:center; font-size:23px; transition:.18s; }
   .dig:hover .dig-arrow{ background:#FFD04A; box-shadow:0 0 0 4px rgba(247,181,0,.25); }
   /* академия — слайдер на белом, без рамки (картинки одного размера → не прыгает) */
-  .slider{ position:absolute; left:860px; top:50%; transform:translateY(-50%); width:960px; aspect-ratio:1700 / 1307; }
+  .slider-wrap{ position:absolute; left:860px; top:50%; transform:translateY(-50%); width:960px;
+    display:flex; flex-direction:column; gap:16px; }
+  /* плашка-«шапка» над слайдером (шрифт по стандарту, как .proof) */
+  .slider-cap{ background:#F6F8FA; border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:12px;
+    padding:16px 20px; font-size:17px; line-height:1.45; color:var(--body); }
+  .slider-cap b{ color:var(--ink); font-weight:700; }
+  .slider{ position:relative; width:100%; aspect-ratio:1700 / 1307; }
   .slide{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; opacity:0;
     transition:opacity .8s ease; transform:translateZ(0); will-change:opacity; }
   .slide.active{ opacity:1; }
-  .slider-cap{ position:absolute; right:0; bottom:0; max-width:64%;
-    background:#F6F8FA; border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:12px;
-    padding:14px 18px; font-size:14px; line-height:1.45; color:var(--body); }
-  .slider-cap b{ color:var(--ink); font-weight:700; }
   /* модалка */
   .modal{ position:fixed; inset:0; z-index:60; display:none; }
   .modal.open{ display:flex; }
@@ -224,8 +226,8 @@
     #s3 h1{ font-size:clamp(30px,7.2vw,44px); }
     .dig{ margin-top:1.6em; max-width:none; width:100%; gap:18px; }
     .dig-line{ font-size:clamp(16px,4.3vw,19px); }
-    .slider{ position:static; transform:none; width:100%; }
-    .slider-cap{ font-size:clamp(11px,3vw,13px); max-width:74%; padding:9px 12px; }
+    .slider-wrap{ position:static; transform:none; width:100%; }
+    .slider-cap{ font-size:clamp(14px,3.7vw,16px); padding:13px 16px; }
     .modal-sheet{ width:100vw; max-width:100vw; height:100svh; max-height:100svh; border-radius:0;
       padding:clamp(54px,9vw,58px) clamp(22px,6vw,28px) clamp(40px,12vw,58px); }
     .modal-h{ font-size:clamp(24px,6.4vw,32px); }
@@ -429,10 +431,12 @@
           </div>
         </div>
 
-        <div class="slider" id="slider">
-          <img class="slide active" src="assets/academy.png" alt="Академия — список обучающих модулей">
-          <img class="slide" src="assets/lesson.png" alt="Урок академии — авторское видео и презентация">
+        <div class="slider-wrap">
           <div class="slider-cap">Скриншот из <b>собственной академии</b>, в которой мы обучали новых сотрудников</div>
+          <div class="slider" id="slider">
+            <img class="slide active" src="assets/academy.png" alt="Академия — список обучающих модулей">
+            <img class="slide" src="assets/lesson.png" alt="Урок академии — авторское видео и презентация">
+          </div>
         </div>
       </div>
     </section>
@@ -492,6 +496,6 @@
     viewer && viewer.querySelector('[data-vclose]').addEventListener('click', closeViewer);
     document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ modal && modal.classList.remove('open'); viewer && viewer.classList.remove('open'); document.body.style.overflow=''; } });
   </script>
-  <!-- build 20260609-031255 -->
+  <!-- build 20260609-031541 -->
 </body>
 </html>
