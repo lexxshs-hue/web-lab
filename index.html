@@ -148,6 +148,10 @@
   .tg img{ display:block; width:100%; height:auto; }
   .tg-cap{ font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--mute); margin-top:30px; }
   .tg-cap b{ color:var(--ink); }
+  /* светлый скрин в модалке (шаблон) */
+  .mimg{ margin-top:14px; width:100%; border-radius:14px; overflow:hidden; border:1px solid var(--line);
+    box-shadow:0 20px 44px -30px rgba(13,23,48,.3); }
+  .mimg img{ display:block; width:100%; height:auto; }
   /* мобильный просмотрщик (pinch-zoom) */
   .viewer{ position:fixed; inset:0; z-index:70; display:none; background:#0B1020; }
   .viewer.open{ display:block; }
@@ -156,6 +160,25 @@
   .viewer-scroll img{ width:100%; max-width:none; height:auto; border-radius:8px; }
   .viewer-close{ position:fixed; top:14px; right:14px; z-index:71; width:46px; height:46px; border-radius:50%;
     border:none; background:rgba(255,255,255,.16); color:#fff; font-size:24px; line-height:1; }
+
+  /* ===== ЭКРАН 05 (Приоритеты): лента шагов + результат ===== */
+  #s4 .text-col{ width:760px; }
+  #s4 h1{ font-size:54px; line-height:1.1; max-width:720px; }
+  #s4 .body{ max-width:720px; }
+  .flow{ position:absolute; left:960px; top:50%; transform:translateY(-50%); width:860px; display:flex; flex-direction:column; }
+  .step{ position:relative; display:flex; align-items:flex-start; gap:22px; padding-bottom:30px; }
+  .step:not(:last-of-type)::before{ content:""; position:absolute; left:24px; top:54px; bottom:-2px; width:2px; background:var(--line); }
+  .step-n{ flex:none; width:50px; height:50px; border-radius:50%; border:2px solid var(--accent); color:var(--accent);
+    background:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:20px; z-index:1; }
+  .step-b{ padding-top:6px; }
+  .step-b b{ display:block; font-weight:700; font-size:21px; color:var(--ink); letter-spacing:-.01em; margin-bottom:3px; }
+  .step-b span{ font-size:16px; color:var(--body); }
+  .result{ margin-top:6px; display:flex; align-items:baseline; gap:13px; flex-wrap:wrap;
+    background:#F6F8FA; border:1px solid var(--line); border-left:3px solid var(--amber); border-radius:14px; padding:20px 24px; }
+  .r-from{ font-family:'IBM Plex Mono',monospace; font-size:24px; color:var(--mute); }
+  .r-arrow{ color:var(--amber); font-weight:800; font-size:26px; }
+  .r-to{ font-weight:800; font-size:46px; line-height:1; color:var(--amber); letter-spacing:-.02em; }
+  .r-label{ font-size:16px; color:var(--body); align-self:center; }
 
   /* ----- тёмная карта (метрика) ----- */
   .card{ container-type:size; position:absolute; left:810px; top:120px; width:1010px; height:840px;
@@ -233,6 +256,12 @@
     .modal-h{ font-size:clamp(24px,6.4vw,32px); }
     .modal-text{ font-size:clamp(15px,4vw,18px); }
     .tg img{ cursor:zoom-in; }
+
+    /* экран 05: лента шагов в стек */
+    #s4 h1{ font-size:clamp(30px,7.2vw,44px); }
+    .flow{ position:static; transform:none; width:100%; }
+    .step-b b{ font-size:clamp(18px,4.8vw,21px); }
+    .r-to{ font-size:clamp(38px,12vw,46px); }
 
     /* карта: авто-высота, вертикальный стек, читаемые размеры (не container-units) */
     .card{ container-type:normal; position:relative; left:auto; top:auto; width:100%; height:auto;
@@ -425,7 +454,7 @@
           <div class="kicker">04 · прозрачность</div>
           <h1>Понятна сотрудникам и прозрачна для руководства</h1>
           <p class="body">Систему мало спроектировать, её нужно внедрить и поддерживать без лишней бюрократии — только те правила и знания, что помогают работать. Обучающие материалы собираю в академию, так новичку проще адаптироваться, а специальный отдел контроля качества не карает, а подсказывает, что поправить, и подсвечивает руководству проблемные места.</p>
-          <div class="dig" id="openModal">
+          <div class="dig" data-modal-target="modal-okk">
             <span class="dig-line">Узнайте больше, как и зачем один отдел следит за порядком почти во всей компании</span>
             <div class="dig-arrow">→</div>
           </div>
@@ -441,10 +470,35 @@
       </div>
     </section>
 
+    <!-- ===== ЭКРАН 05 · ПРИОРИТЕТЫ ===== -->
+    <section class="screen" id="s4">
+      <div class="stage">
+        <div class="corner">05 / 10</div>
+
+        <div class="text-col">
+          <div class="kicker">05 · приоритеты</div>
+          <h1>Навожу порядок по приоритетам, не ломая рабочее</h1>
+          <p class="body">Захожу по шагам: сначала закрываю срочное и забочусь о деньгах, потом нахожу проблемы и расставляю приоритеты. Что работает, не трогаю, а усиливаю. По отчётам вижу, где сбоит и где перегруз, и убираю ручную работу. Улучшаю постоянно, но комфортно для людей. Так менеджер за три месяца стал вести 130+ клиентов вместо прежних 70.</p>
+          <div class="dig" data-modal-target="modal-tpl">
+            <span class="dig-line">Шаблоны расчётов — как подняли количество и снизили ошибки</span>
+            <div class="dig-arrow">→</div>
+          </div>
+        </div>
+
+        <div class="flow">
+          <div class="step"><span class="step-n">1</span><div class="step-b"><b>Срочное и деньги</b><span>закрываю первым</span></div></div>
+          <div class="step"><span class="step-n">2</span><div class="step-b"><b>Анализ и приоритеты</b><span>нахожу реальные проблемы</span></div></div>
+          <div class="step"><span class="step-n">3</span><div class="step-b"><b>Усиливаю работающее</b><span>что работает — не трогаю</span></div></div>
+          <div class="step"><span class="step-n">4</span><div class="step-b"><b>Постоянно улучшаю</b><span>убираю ручную работу</span></div></div>
+          <div class="result"><span class="r-from">70</span><span class="r-arrow">→</span><span class="r-to">130+</span><span class="r-label">клиентов на одном менеджере · за 3 месяца</span></div>
+        </div>
+      </div>
+    </section>
+
   </div>
 
-  <!-- модалка 4.1 (ОКК) -->
-  <div class="modal" id="modal">
+  <!-- модалка ОКК (экран 04) -->
+  <div class="modal" id="modal-okk">
     <div class="modal-bd" data-close></div>
     <div class="modal-sheet">
       <button class="modal-close" data-close>×</button>
@@ -452,6 +506,18 @@
       <p class="modal-text">Отдел контроля качества по расписанию проверяет продажи, расчёты, сервис и финансы: на скрипты, регламенты, метрики и аномалии. Сначала подсказывает и даёт время на исправление, помогает разобраться. И только потом, если ошибка системна, фиксирует отклонение в отчёте для руководителя. Так у руководителей снижаются трудозатраты, и они могут заниматься более эффективной работой, а сотрудники понимают, что есть контроль, и начинают более качественно выполнять процессы.</p>
       <div class="tg-cap">из телеграм-отчёта ОКК · соблюдение скриптов <b>87–100%</b> · фамилии скрыты (NDA)</div>
       <div class="tg"><img src="assets/tg-okk-clean.png" alt="Отчёт ОКК — соблюдение скриптов" id="tgImg"></div>
+    </div>
+  </div>
+
+  <!-- модалка Шаблоны (экран 05) -->
+  <div class="modal" id="modal-tpl">
+    <div class="modal-bd" data-close></div>
+    <div class="modal-sheet">
+      <button class="modal-close" data-close>×</button>
+      <h2 class="modal-h">Шаблоны вместо нехватки рук</h2>
+      <p class="modal-text">Проектировщиков не хватало под расчёты и аудиты рабочей документации. Сделал шаблоны расчётов с готовыми решениями и поставщиками и чек-листы аудита, которые сами заполняют файл для клиента с комментариями. В итоге за день один проектировщик стал делать больше расчётов и аудитов, а качество выровнялось.</p>
+      <div class="tg-cap">пример шаблона расчёта · <b>цены и поставщики скрыты (NDA)</b></div>
+      <div class="mimg"><img src="assets/template.png" alt="Шаблон расчёта — позиции и цветовая логика, цены скрыты" id="tplImg"></div>
     </div>
   </div>
 
@@ -474,28 +540,32 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
     fit();
 
-    /* экран 04: «копни глубже» модалка + мобильный просмотрщик */
-    const modal = document.getElementById('modal');
-    if (modal){
-      const openM = document.getElementById('openModal');
-      openM && openM.addEventListener('click', ()=>{ modal.classList.add('open'); document.body.style.overflow='hidden'; });
-      modal.querySelectorAll('[data-close]').forEach(el=> el.addEventListener('click', ()=>{ modal.classList.remove('open'); document.body.style.overflow=''; }));
-    }
+    /* «копни глубже» модалки (любое число) + мобильный просмотрщик */
     const viewer = document.getElementById('viewer'), viewerImg = document.getElementById('viewerImg');
     function openViewer(src){ viewerImg.src = src; viewer.classList.add('open'); document.body.style.overflow='hidden'; }
     function closeViewer(){ viewer.classList.remove('open'); document.body.style.overflow=''; }
-    // слайдер академии — авто-смена каждые 3 секунды
+    function closeModals(){ document.querySelectorAll('.modal.open').forEach(m=> m.classList.remove('open')); document.body.style.overflow=''; }
+    document.querySelectorAll('[data-modal-target]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{ const m=document.getElementById(btn.dataset.modalTarget); if(m){ m.classList.add('open'); document.body.style.overflow='hidden'; } });
+    });
+    document.querySelectorAll('.modal [data-close]').forEach(el=> el.addEventListener('click', closeModals));
+
+    // слайдер академии — авто-смена каждые 4.5 секунды
     const slider = document.getElementById('slider');
     if (slider){
       const slides = slider.querySelectorAll('.slide');
       let si = 0;
       setInterval(()=>{ slides[si].classList.remove('active'); si=(si+1)%slides.length; slides[si].classList.add('active'); }, 4500);
     }
+
+    // мобильный pinch-zoom для плотных скринов в модалках
     const tgImg = document.getElementById('tgImg');
     tgImg && tgImg.addEventListener('click', ()=>{ if(mqMobile.matches) openViewer('assets/tg-okk-clean.png'); });
+    const tplImg = document.getElementById('tplImg');
+    tplImg && tplImg.addEventListener('click', ()=>{ if(mqMobile.matches) openViewer('assets/template.png'); });
     viewer && viewer.querySelector('[data-vclose]').addEventListener('click', closeViewer);
-    document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ modal && modal.classList.remove('open'); viewer && viewer.classList.remove('open'); document.body.style.overflow=''; } });
+    document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeModals(); viewer && viewer.classList.remove('open'); document.body.style.overflow=''; } });
   </script>
-  <!-- build 20260609-031541 -->
+  <!-- build 20260609-032945 -->
 </body>
 </html>
