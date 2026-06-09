@@ -189,12 +189,12 @@
     border:none; background:rgba(255,255,255,.16); color:#fff; font-size:24px; line-height:1; }
 
   /* ===== ЭКРАН 05 (Приоритеты): таблица ТО СЛЕВА, текст + компактные шаги СПРАВА ===== */
-  #s4 .text-col{ left:990px; width:830px; }
-  #s4 h1{ font-size:54px; line-height:1.1; max-width:800px; }
-  #s4 .body{ max-width:810px; margin-top:30px; }
-  #s4 .insight{ max-width:800px; margin-top:30px; }
+  #s4 .text-col{ left:1078px; width:742px; }
+  #s4 h1{ font-size:52px; line-height:1.1; max-width:720px; }
+  #s4 .body{ max-width:730px; margin-top:28px; }
+  #s4 .cta{ max-width:730px; margin-top:28px; }
   /* реальная таблица ТО — слева, единая карта: заголовок примыкает к скрину */
-  .to-art{ position:absolute; left:100px; top:50%; transform:translateY(-50%); width:850px;
+  .to-art{ position:absolute; left:100px; top:50%; transform:translateY(-50%); width:940px;
     display:flex; flex-direction:column; background:#fff; border:1px solid var(--line); border-top:3px solid var(--accent);
     border-radius:16px; overflow:hidden; box-shadow:0 22px 48px -30px rgba(13,23,48,.32); }
   .to-cap{ background:#F6F8FA; padding:18px 24px; font-size:23px; line-height:1.4; color:var(--body); }
@@ -557,15 +557,15 @@
           <div class="kicker">05 · приоритеты</div>
           <h1>Навожу порядок по приоритетам, не ломая рабочее</h1>
           <p class="body">Захожу по шагам: сначала закрываю срочное и забочусь о деньгах, потом нахожу проблемы и расставляю приоритеты. Что работает, не трогаю, а усиливаю. По отчётам вижу, где сбоит и где перегруз, и убираю ручную работу. Улучшаю постоянно, но комфортно для людей.</p>
-          <p class="insight">За счёт этого подхода менеджер едва тянул 70 клиентов на ТО <span class="ar">→</span> <b>за три месяца вышел на 130</b>.</p>
+          <p class="cta">За счёт такого подхода менеджер, который ранее не справлялся с 70 клиентами, начал вести <mark>больше 130</mark>.</p>
           <div class="dig" data-modal-target="modal-tpl">
-            <span class="dig-line">Узнайте, как за счёт создания шаблонов расчётов и аудитов мы увеличили их количество и снизили вероятность ошибки</span>
+            <span class="dig-line">Как с помощью шаблонов мы увеличили эффективность работы проектировщиков и улучшили качество</span>
             <div class="dig-arrow">→</div>
           </div>
         </div>
 
         <div class="to-art">
-          <div class="to-cap">Скрин из <b>Bitrix24</b>, на котором видна автоматизация работы воронки для снижения количества ручного труда</div>
+          <div class="to-cap">Скрин из <b>Bitrix24</b>, на котором видна часть автоматизации процессов в воронке для снижения количества ручного труда</div>
           <div class="to-frame"><img src="assets/s4-bitrix.png" alt="Bitrix24 — автоматизация воронки продаж: роботы и триггеры" id="toImg"></div>
         </div>
       </div>
@@ -633,7 +633,7 @@
       <button class="modal-close" data-close>×</button>
       <div class="modal-body">
         <h2 class="modal-h">Создали шаблоны вместо найма дополнительных сотрудников</h2>
-        <p class="modal-text">Нам не хватало проектировщиков под выполнение расчётов и аудитов рабочей документации. Мы создали шаблоны с готовыми решениями, поставщиками, чек-листами и системой проверок, которые автоматически заполняют файл и дают комментарии для клиента. В итоге количество расчётов и проверок РД увеличилось, а также их качество.</p>
+        <p class="modal-text">Нам не хватало проектировщиков под выполнение расчётов и аудитов рабочей документации. Мы создали шаблоны с готовыми решениями, поставщиками, чек-листами и системой проверок, которые автоматически заполняют файл и дают комментарии для клиента. В итоге количество расчётов и проверок РД увеличилось, а их качество стало лучше.</p>
       </div>
       <div class="modal-media">
         <div class="vid-wrap">
@@ -717,6 +717,6 @@
     viewer && viewer.querySelector('[data-vclose]').addEventListener('click', closeViewer);
     document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeModals(); viewer && viewer.classList.remove('open'); document.body.style.overflow=''; } });
   </script>
-  <!-- build 20260609-171330 -->
+  <!-- build 20260609-172827 -->
 </body>
 </html>
