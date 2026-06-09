@@ -181,14 +181,14 @@
   .vid-frame video{ display:block; max-width:100%; max-height:100%; width:auto; height:auto; box-shadow:none; border-radius:0; }
   /* текстовый вкладыш (кейс) — одна колонка, без медиа */
   .modal-sheet.solo{ grid-template-columns:1fr; }
-  .modal-sheet.solo .modal-body{ max-width:940px; margin:0 auto; padding:60px 64px; overflow:auto; justify-content:flex-start; }
-  .modal-sheet.solo .modal-text{ margin-bottom:8px; }
-  .case-list{ list-style:none; margin-top:26px; display:flex; flex-direction:column; gap:18px; }
-  .case-list li{ position:relative; padding-left:46px; font-size:18px; line-height:1.55; color:var(--body); }
-  .case-list li b{ color:var(--ink); font-weight:700; }
-  .case-list li::before{ content:"✓"; position:absolute; left:0; top:1px; width:28px; height:28px; border-radius:50%;
-    background:#EEF3FF; color:var(--accent); font-weight:800; font-size:15px; display:flex; align-items:center; justify-content:center; }
-  .case-result{ margin-top:30px; padding:22px 26px; border-radius:14px; background:#F6F8FA;
+  .modal-sheet.solo .modal-body{ max-width:1240px; margin:0 auto; padding:56px 60px; overflow:auto; justify-content:flex-start; }
+  .modal-sheet.solo .modal-text{ max-width:920px; margin-bottom:6px; }
+  .case-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:28px; }
+  .case-cell{ background:#F6F8FA; border:1px solid var(--line); border-top:3px solid var(--accent); border-radius:14px; padding:18px 20px 20px; }
+  .case-cell .n{ font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:.12em; color:var(--accent); }
+  .case-cell b{ display:block; font-size:18px; line-height:1.25; color:var(--ink); margin:8px 0; }
+  .case-cell p{ font-size:15px; line-height:1.45; color:var(--body); margin:0; }
+  .case-result{ margin-top:26px; padding:22px 26px; border-radius:14px; background:#F6F8FA;
     border-left:4px solid var(--amber); font-size:19px; line-height:1.5; color:var(--ink); }
   /* мобильный просмотрщик (pinch-zoom) */
   .viewer{ position:fixed; inset:0; z-index:70; display:none; background:#0B1020; }
@@ -342,7 +342,9 @@
     .gframe{ max-height:calc(100% - 84px); }
     .gframe img{ width:auto; }
     .modal-sheet.solo .modal-body{ padding:clamp(56px,11vw,64px) clamp(20px,6vw,26px) clamp(32px,8vw,48px); max-width:none; }
-    .case-list li{ font-size:clamp(15px,4vw,17px); padding-left:38px; }
+    .case-grid{ grid-template-columns:1fr; gap:12px; }
+    .case-cell b{ font-size:clamp(16px,4.4vw,18px); }
+    .case-cell p{ font-size:clamp(14px,3.8vw,15px); }
     .case-result{ font-size:clamp(16px,4.2vw,18px); }
 
     /* экран 05: таблица ТО + текст/шаги в стек */
@@ -704,15 +706,19 @@
       <button class="modal-close" data-close>×</button>
       <div class="modal-body">
         <h2 class="modal-h">Что я сделал на объекте — и что из этого вышло</h2>
-        <p class="modal-text">Партнёры выиграли тендер и попросили меня «посидеть на совещаниях, потом подхватим». Но руководитель проекта не тянул, объект нужно было вести физически, а ресурсов не было — и я взял объект на себя.</p>
-        <ul class="case-list">
-          <li><b>Система найма под объект.</b> Подключил рекрутеров и технического специалиста: рекрутер проверял адекватность, деньги и сроки, технарь — квалификацию. За три недели с нуля собрал команду — монтажников, прораба, кладовщика, руководителя проекта.</li>
-          <li><b>Сдельная оплата и субподряд.</b> Подрядчиков посадил на объёмы со сдельной оплатой и учётом выполненных работ — платим за результат, а не за часы.</li>
-          <li><b>Работа с заказчиком.</b> Наладил коммуникацию через нового руководителя проекта: прозрачные статусы и сроки вместо хаоса.</li>
-          <li><b>Авторская отчётность «шахматка».</b> Графическая матрица состояния работ по этажам и системам — такого отчёта в компании раньше не было. Сразу видно, где готово и где затык.</li>
-          <li><b>Порядок на складе и в документообороте</b> — с первого дня.</li>
-        </ul>
-        <p class="case-result">Через 3–4 месяца я передал отлаженную команду и ушёл — объект довели до сдачи без меня. Команда жила ещё 2–3 года и стала ядром для других объектов: нас приводили в пример и звали как сильных подрядчиков. По сути, команда вывела компанию в лидеры по подрядным работам.</p>
+        <p class="modal-text">Партнёры выиграли тендер, но не смогли подхватить объект, а руководитель не тянул. Я зашёл, возглавил и за несколько недель собрал управление с нуля. Что именно сделал:</p>
+        <div class="case-grid">
+          <div class="case-cell"><span class="n">01</span><b>Система найма без завязки на руководителе</b><p>Рекрутер отбирал по адекватности, деньгам и срокам, технический специалист — по квалификации. Найм перестал зависеть от одного человека.</p></div>
+          <div class="case-cell"><span class="n">02</span><b>Команда с нуля за три недели</b><p>Набрал монтажников, прораба, кладовщика и руководителя проекта.</p></div>
+          <div class="case-cell"><span class="n">03</span><b>Сдельная оплата труда</b><p>Платим за результат, а не за отработанные часы — производительность выросла.</p></div>
+          <div class="case-cell"><span class="n">04</span><b>Субподряд на объёмы</b><p>Подрядчиков перевёл на оплату за объём по понятным правилам.</p></div>
+          <div class="case-cell"><span class="n">05</span><b>Учёт выполненных работ</b><p>Прозрачно видно, сколько и кем сделано — без споров по оплате.</p></div>
+          <div class="case-cell"><span class="n">06</span><b>Работа с заказчиком</b><p>Через нового руководителя проекта успокоил заказчика и показал, что всё под контролем.</p></div>
+          <div class="case-cell"><span class="n">07</span><b>Авторский отчёт «шахматка»</b><p>Таблица-матрица, где сразу видно по каждому зданию, этажу и системе, в каком всё состоянии. Такого отчёта в компании раньше не было.</p></div>
+          <div class="case-cell"><span class="n">08</span><b>Порядок на складе</b><p>Материалы под контролем с первого дня.</p></div>
+          <div class="case-cell"><span class="n">09</span><b>Документооборот</b><p>Систематизировал исполнительную документацию по объекту.</p></div>
+        </div>
+        <p class="case-result">Новая команда и система вывели нашу компанию в лидеры среди подрядчиков: объект успешно сдали, а команда продолжила работать в той же структуре ещё два года — уже с другим руководителем.</p>
       </div>
     </div>
   </div>
@@ -792,6 +798,6 @@
     viewer && viewer.querySelector('[data-vclose]').addEventListener('click', closeViewer);
     document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeModals(); viewer && viewer.classList.remove('open'); document.body.style.overflow=''; } });
   </script>
-  <!-- build 20260609-180801 -->
+  <!-- build 20260609-181713 -->
 </body>
 </html>
