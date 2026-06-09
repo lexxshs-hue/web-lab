@@ -258,6 +258,17 @@
   .built-list li{ position:relative; padding-left:30px; font-size:20px; line-height:1.35; color:var(--ink); }
   .built-list li::before{ content:"✓"; position:absolute; left:0; top:0; color:var(--accent); font-weight:800; }
 
+  /* ===== ЭКРАН 08 (Провал и урок): текст слева, акцент-урок СПРАВА ===== */
+  #s7 .text-col{ width:800px; }
+  #s7 h1{ font-size:54px; line-height:1.1; max-width:760px; }
+  #s7 .body{ max-width:780px; }
+  .lesson{ position:absolute; left:1000px; top:50%; transform:translateY(-50%); width:820px;
+    background:#fff; border:1px solid var(--line); border-top:3px solid var(--amber); border-radius:16px;
+    padding:50px 54px; box-shadow:0 22px 48px -30px rgba(13,23,48,.32); }
+  .lesson-eyebrow{ font-family:'IBM Plex Mono',monospace; font-size:15px; letter-spacing:.2em;
+    text-transform:uppercase; color:var(--amber); margin-bottom:22px; }
+  .lesson-text{ font-size:32px; line-height:1.32; font-weight:600; color:var(--ink); letter-spacing:-.01em; }
+
   /* ----- тёмная карта (метрика) ----- */
   .card{ container-type:size; position:absolute; left:810px; top:120px; width:1010px; height:840px;
     aspect-ratio:1010/840; border-radius:28px; overflow:hidden;
@@ -371,6 +382,12 @@
     #s6 h1{ font-size:clamp(28px,6.8vw,40px); }
     #s6 .body{ font-size:clamp(15px,4vw,18px); }
     .built-list li{ font-size:clamp(15px,4vw,17px); }
+
+    /* экран 08: провал + урок в стек */
+    #s7 .text-col{ left:auto; width:auto; }
+    #s7 h1{ font-size:clamp(28px,6.8vw,42px); }
+    .lesson{ position:static; transform:none; width:100%; padding:clamp(26px,7vw,38px); }
+    .lesson-text{ font-size:clamp(20px,5.4vw,26px); }
 
     /* карта: авто-высота, вертикальный стек, читаемые размеры (не container-units) */
     .card{ container-type:normal; position:relative; left:auto; top:auto; width:100%; height:auto;
@@ -648,6 +665,24 @@
       </div>
     </section>
 
+    <!-- ===== ЭКРАН 08 · ПРОВАЛ И УРОК (текстовый: провал слева, урок-акцент справа) ===== -->
+    <section class="screen" id="s7">
+      <div class="stage">
+        <div class="corner">08 / 10</div>
+
+        <div class="text-col">
+          <div class="kicker">08 · провал и урок</div>
+          <h1>Мой главный провал — и урок из него</h1>
+          <p class="body">Мои отделы работали по системе и эффективно, но с партнёрами мы разошлись: часть решений они принимали в обход расчётов и планирования. Появлялись объекты без системы и раздутые команды без контроля. Я предупреждал, но изменений вне своей зоны не добился. Компания не справилась и идёт к закрытию.</p>
+        </div>
+
+        <div class="lesson">
+          <div class="lesson-eyebrow">урок</div>
+          <p class="lesson-text">Систему нужно делать прозрачнее и устойчивее к кризисам, а с партнёрами — чётче договариваться на берегу.</p>
+        </div>
+      </div>
+    </section>
+
   </div>
 
   <!-- модалка ОКК (экран 04) -->
@@ -797,6 +832,6 @@
     viewer && viewer.querySelector('[data-vclose]').addEventListener('click', closeViewer);
     document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeModals(); viewer && viewer.classList.remove('open'); document.body.style.overflow=''; } });
   </script>
-  <!-- build 20260609-183547 -->
+  <!-- build 20260609-184523 -->
 </body>
 </html>
