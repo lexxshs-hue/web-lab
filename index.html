@@ -162,7 +162,7 @@
   .gcap b{ display:block; font-weight:700; font-size:19px; color:var(--ink); margin-bottom:5px; }
   .gcap span{ font-family:'IBM Plex Mono',monospace; font-size:13px; line-height:1.45; color:var(--mute); }
   .gframe{ border:1px solid var(--line); border-radius:12px; overflow:hidden; background:#fff;
-    box-shadow:0 20px 44px -30px rgba(13,23,48,.35); max-width:100%; max-height:calc(100% - 96px); }
+    box-shadow:0 20px 44px -30px rgba(13,23,48,.35); max-width:100%; max-height:calc(100% - 134px); }
   .gframe img{ display:block; max-width:100%; max-height:100%; width:auto; height:auto; box-shadow:none; border-radius:0; }
   .gnav{ position:absolute; top:50%; transform:translateY(-50%); width:46px; height:46px; border-radius:50%;
     border:1px solid var(--line); background:rgba(255,255,255,.9); color:var(--ink); font-size:26px; line-height:1;
@@ -602,12 +602,16 @@
       <div class="modal-media">
         <div class="gallery" data-auto="5500">
           <div class="gslide active">
-            <div class="gcap"><b>ОКК · отдел продаж</b><span>комплексная проверка отдела: срез показателей, активность и соблюдение скриптов по каждому менеджеру</span></div>
-            <div class="gframe"><img src="assets/okk-srez.png" alt="Отчёт ОКК — комплексная проверка отдела продаж, фамилии скрыты (NDA)"></div>
+            <div class="gcap"><b>ОКК · финансы</b><span>Проверяет, что все расходы в системе финансовой отчётности разнесены. Это позволяет иметь точную отчётность по каждому объекту и отделу.</span></div>
+            <div class="gframe"><img src="assets/okk-fin.png" alt="Отчёт ОКК по финансам — суммы и названия скрыты (NDA)"></div>
           </div>
           <div class="gslide">
-            <div class="gcap"><b>ОКК · финансы</b><span>проверяет, что расходы по объектам разнесены — точные отчёты по каждому объекту</span></div>
-            <div class="gframe"><img src="assets/okk-fin.png" alt="Отчёт ОКК по финансам — суммы скрыты (NDA)"></div>
+            <div class="gcap"><b>ОКК · отдел продаж</b><span>Проверяет соответствие разговоров менеджера сценарию разговора и стандарту компании с использованием ИИ и выводит показатель соответствия требованию.</span></div>
+            <div class="gframe"><img src="assets/okk-scenario.png" alt="Отчёт ОКК — соблюдение сценария разговора, фамилии скрыты (NDA)"></div>
+          </div>
+          <div class="gslide">
+            <div class="gcap"><b>ОКК · отдел продаж</b><span>Проверка качества работы в CRM: ведение сделок на предмет слитых клиентов и потерянных сделок, которым нужен дополнительный контроль.</span></div>
+            <div class="gframe"><img src="assets/okk-tasks.png" alt="Отчёт ОКК — сделки без задач, имена и ссылки скрыты (NDA)"></div>
           </div>
           <button class="gnav prev" data-gprev aria-label="Назад">‹</button>
           <button class="gnav next" data-gnext aria-label="Вперёд">›</button>
@@ -694,6 +698,6 @@
     viewer && viewer.querySelector('[data-vclose]').addEventListener('click', closeViewer);
     document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeModals(); viewer && viewer.classList.remove('open'); document.body.style.overflow=''; } });
   </script>
-  <!-- build 20260609-154418 -->
+  <!-- build 20260609-163152 -->
 </body>
 </html>
