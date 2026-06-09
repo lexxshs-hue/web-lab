@@ -179,6 +179,17 @@
   .vid-cap span{ font-family:'IBM Plex Mono',monospace; font-size:13px; line-height:1.45; color:var(--mute); }
   .vid-frame{ border:1px solid var(--line); border-radius:12px; overflow:hidden; box-shadow:0 20px 44px -30px rgba(13,23,48,.35); max-width:100%; max-height:calc(100% - 92px); }
   .vid-frame video{ display:block; max-width:100%; max-height:100%; width:auto; height:auto; box-shadow:none; border-radius:0; }
+  /* текстовый вкладыш (кейс) — одна колонка, без медиа */
+  .modal-sheet.solo{ grid-template-columns:1fr; }
+  .modal-sheet.solo .modal-body{ max-width:940px; margin:0 auto; padding:60px 64px; overflow:auto; justify-content:flex-start; }
+  .modal-sheet.solo .modal-text{ margin-bottom:8px; }
+  .case-list{ list-style:none; margin-top:26px; display:flex; flex-direction:column; gap:18px; }
+  .case-list li{ position:relative; padding-left:46px; font-size:18px; line-height:1.55; color:var(--body); }
+  .case-list li b{ color:var(--ink); font-weight:700; }
+  .case-list li::before{ content:"✓"; position:absolute; left:0; top:1px; width:28px; height:28px; border-radius:50%;
+    background:#EEF3FF; color:var(--accent); font-weight:800; font-size:15px; display:flex; align-items:center; justify-content:center; }
+  .case-result{ margin-top:30px; padding:22px 26px; border-radius:14px; background:#F6F8FA;
+    border-left:4px solid var(--amber); font-size:19px; line-height:1.5; color:var(--ink); }
   /* мобильный просмотрщик (pinch-zoom) */
   .viewer{ position:fixed; inset:0; z-index:70; display:none; background:#0B1020; }
   .viewer.open{ display:block; }
@@ -330,6 +341,9 @@
     .gslide{ padding:6px 42px; }
     .gframe{ max-height:calc(100% - 84px); }
     .gframe img{ width:auto; }
+    .modal-sheet.solo .modal-body{ padding:clamp(56px,11vw,64px) clamp(20px,6vw,26px) clamp(32px,8vw,48px); max-width:none; }
+    .case-list li{ font-size:clamp(15px,4vw,17px); padding-left:38px; }
+    .case-result{ font-size:clamp(16px,4.2vw,18px); }
 
     /* экран 05: таблица ТО + текст/шаги в стек */
     #s4 .text-col{ left:auto; width:auto; }
@@ -618,20 +632,15 @@
         <div class="text-col">
           <div class="kicker">07 · когда горит</div>
           <h1>Когда горит, разбираюсь сам и учу систему на ошибках</h1>
-          <p class="body">На объекте партнёров, где начались проблемы с управлением, я подключился: за три недели собрал команду, навёл порядок и наладил работу с заказчиком. Перестроил процессы, разобрал ошибки и внедрил новые элементы системы, чтобы не повторялись. Через четыре месяца передал объект новому руководителю, и команда сдала его без меня.</p>
-          <div class="built">
-            <div class="built-h">Что выстроил на объекте</div>
-            <ul class="built-list">
-              <li>Найм не на руководителе</li>
-              <li>Отчётность по объекту и выработке</li>
-              <li>Сдельная оплата</li>
-              <li>Ежедневный план</li>
-            </ul>
+          <p class="body">Мне пришлось подключиться к ведению объекта, где начались проблемы с управлением. За три недели я наладил систему найма, собрал команду, ввёл отчётность и выстроил работу с заказчиком. В итоге объект успешно довела до конца и сдала моя команда.</p>
+          <div class="dig" data-modal-target="modal-case">
+            <span class="dig-line">Узнайте подробности: что я делал на этом объекте и что в итоге получилось</span>
+            <div class="dig-arrow">→</div>
           </div>
         </div>
 
         <div class="to-art">
-          <div class="to-cap">Шахматка по объекту: прогресс работ по этажам и системам · <b>архив</b></div>
+          <div class="to-cap">Пример отчёта по объекту, где виден прогресс работ по этажам и системам («шахматка»)</div>
           <div class="to-frame"><img src="assets/shahmatka.png" alt="Шахматка по объекту — матрица прогресса работ по этажам и системам" id="shahImg"></div>
         </div>
       </div>
@@ -684,6 +693,26 @@
           <div class="vid-cap"><b>Сервис генерации аудита РД</b><span>демонстрация того, как работает сервис генерации аудитов рабочей документации · демо-данные, без NDA</span></div>
           <div class="vid-frame"><video src="assets/pdf-gen.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Сервис генерации аудита рабочей документации" id="tplVid"></video></div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- модалка кейса (экран 07) — текстовый вкладыш -->
+  <div class="modal" id="modal-case">
+    <div class="modal-bd" data-close></div>
+    <div class="modal-sheet solo">
+      <button class="modal-close" data-close>×</button>
+      <div class="modal-body">
+        <h2 class="modal-h">Что я сделал на объекте — и что из этого вышло</h2>
+        <p class="modal-text">Партнёры выиграли тендер и попросили меня «посидеть на совещаниях, потом подхватим». Но руководитель проекта не тянул, объект нужно было вести физически, а ресурсов не было — и я взял объект на себя.</p>
+        <ul class="case-list">
+          <li><b>Система найма под объект.</b> Подключил рекрутеров и технического специалиста: рекрутер проверял адекватность, деньги и сроки, технарь — квалификацию. За три недели с нуля собрал команду — монтажников, прораба, кладовщика, руководителя проекта.</li>
+          <li><b>Сдельная оплата и субподряд.</b> Подрядчиков посадил на объёмы со сдельной оплатой и учётом выполненных работ — платим за результат, а не за часы.</li>
+          <li><b>Работа с заказчиком.</b> Наладил коммуникацию через нового руководителя проекта: прозрачные статусы и сроки вместо хаоса.</li>
+          <li><b>Авторская отчётность «шахматка».</b> Графическая матрица состояния работ по этажам и системам — такого отчёта в компании раньше не было. Сразу видно, где готово и где затык.</li>
+          <li><b>Порядок на складе и в документообороте</b> — с первого дня.</li>
+        </ul>
+        <p class="case-result">Через 3–4 месяца я передал отлаженную команду и ушёл — объект довели до сдачи без меня. Команда жила ещё 2–3 года и стала ядром для других объектов: нас приводили в пример и звали как сильных подрядчиков. По сути, команда вывела компанию в лидеры по подрядным работам.</p>
       </div>
     </div>
   </div>
@@ -763,6 +792,6 @@
     viewer && viewer.querySelector('[data-vclose]').addEventListener('click', closeViewer);
     document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeModals(); viewer && viewer.classList.remove('open'); document.body.style.overflow=''; } });
   </script>
-  <!-- build 20260609-175150 -->
+  <!-- build 20260609-180801 -->
 </body>
 </html>
