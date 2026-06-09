@@ -152,6 +152,7 @@
   .mimg{ margin-top:14px; width:100%; border-radius:14px; overflow:hidden; border:1px solid var(--line);
     box-shadow:0 20px 44px -30px rgba(13,23,48,.3); }
   .mimg img{ display:block; width:100%; height:auto; }
+  .mimg video{ display:block; width:100%; height:auto; }
   /* мобильный просмотрщик (pinch-zoom) */
   .viewer{ position:fixed; inset:0; z-index:70; display:none; background:#0B1020; }
   .viewer.open{ display:block; }
@@ -514,10 +515,10 @@
     <div class="modal-bd" data-close></div>
     <div class="modal-sheet">
       <button class="modal-close" data-close>×</button>
-      <h2 class="modal-h">Шаблоны вместо нехватки рук</h2>
+      <h2 class="modal-h">Шаблоны вместо дополнительных сотрудников</h2>
       <p class="modal-text">Проектировщиков не хватало под расчёты и аудиты рабочей документации. Сделал шаблоны расчётов с готовыми решениями и поставщиками и чек-листы аудита, которые сами заполняют файл для клиента с комментариями. В итоге за день один проектировщик стал делать больше расчётов и аудитов, а качество выровнялось.</p>
-      <div class="tg-cap">пример шаблона расчёта · <b>цены и поставщики скрыты (NDA)</b></div>
-      <div class="mimg"><img src="assets/template.png" alt="Шаблон расчёта — позиции и цветовая логика, цены скрыты" id="tplImg"></div>
+      <div class="tg-cap">сервис генерации аудита РД · форма → готовый PDF · <b>демо-данные, без NDA</b></div>
+      <div class="mimg"><video src="assets/pdf-gen.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Сервис генерации аудита рабочей документации: форма заполняется и собирает готовый PDF" id="tplVid"></video></div>
     </div>
   </div>
 
@@ -546,7 +547,7 @@
     function closeViewer(){ viewer.classList.remove('open'); document.body.style.overflow=''; }
     function closeModals(){ document.querySelectorAll('.modal.open').forEach(m=> m.classList.remove('open')); document.body.style.overflow=''; }
     document.querySelectorAll('[data-modal-target]').forEach(btn=>{
-      btn.addEventListener('click', ()=>{ const m=document.getElementById(btn.dataset.modalTarget); if(m){ m.classList.add('open'); document.body.style.overflow='hidden'; } });
+      btn.addEventListener('click', ()=>{ const m=document.getElementById(btn.dataset.modalTarget); if(m){ m.classList.add('open'); document.body.style.overflow='hidden'; const v=m.querySelector('video'); if(v){ try{ v.currentTime=0; }catch(e){} v.play().catch(()=>{}); } } });
     });
     document.querySelectorAll('.modal [data-close]').forEach(el=> el.addEventListener('click', closeModals));
 
@@ -561,11 +562,9 @@
     // мобильный pinch-zoom для плотных скринов в модалках
     const tgImg = document.getElementById('tgImg');
     tgImg && tgImg.addEventListener('click', ()=>{ if(mqMobile.matches) openViewer('assets/tg-okk-clean.png'); });
-    const tplImg = document.getElementById('tplImg');
-    tplImg && tplImg.addEventListener('click', ()=>{ if(mqMobile.matches) openViewer('assets/template.png'); });
     viewer && viewer.querySelector('[data-vclose]').addEventListener('click', closeViewer);
     document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeModals(); viewer && viewer.classList.remove('open'); document.body.style.overflow=''; } });
   </script>
-  <!-- build 20260609-032945 -->
+  <!-- build 20260609-120749 -->
 </body>
 </html>
