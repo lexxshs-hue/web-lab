@@ -172,6 +172,13 @@
   .gdots{ position:absolute; bottom:10px; left:50%; transform:translateX(-50%); display:flex; gap:9px; z-index:4; }
   .gdot{ width:9px; height:9px; border-radius:50%; background:var(--line); border:none; cursor:pointer; padding:0; }
   .gdot.active{ background:var(--accent); }
+  /* видео в модалке: подпись справа над роликом */
+  .vid-wrap{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px; width:100%; height:100%; }
+  .vid-cap{ text-align:center; max-width:620px; flex:none; }
+  .vid-cap b{ display:block; font-weight:700; font-size:19px; color:var(--ink); margin-bottom:5px; }
+  .vid-cap span{ font-family:'IBM Plex Mono',monospace; font-size:13px; line-height:1.45; color:var(--mute); }
+  .vid-frame{ border:1px solid var(--line); border-radius:12px; overflow:hidden; box-shadow:0 20px 44px -30px rgba(13,23,48,.35); max-width:100%; max-height:calc(100% - 92px); }
+  .vid-frame video{ display:block; max-width:100%; max-height:100%; width:auto; height:auto; box-shadow:none; border-radius:0; }
   /* мобильный просмотрщик (pinch-zoom) */
   .viewer{ position:fixed; inset:0; z-index:70; display:none; background:#0B1020; }
   .viewer.open{ display:block; }
@@ -185,6 +192,7 @@
   #s4 .text-col{ left:990px; width:830px; }
   #s4 h1{ font-size:54px; line-height:1.1; max-width:800px; }
   #s4 .body{ max-width:810px; margin-top:30px; }
+  #s4 .insight{ max-width:800px; margin-top:30px; }
   /* реальная таблица ТО — слева, единая карта: заголовок примыкает к скрину */
   .to-art{ position:absolute; left:100px; top:50%; transform:translateY(-50%); width:850px;
     display:flex; flex-direction:column; background:#fff; border:1px solid var(--line); border-top:3px solid var(--accent);
@@ -223,8 +231,11 @@
     border-radius:16px; overflow:hidden; box-shadow:0 22px 48px -30px rgba(13,23,48,.32); }
   .fin-cap{ background:#F6F8FA; padding:18px 24px; font-size:23px; line-height:1.4; color:var(--body); }
   .fin-cap b{ color:var(--ink); font-weight:700; }
-  .fin-frame{ display:block; }
-  .fin-frame img{ display:block; width:100%; height:auto; }
+  /* карусель: 2 артефакта сменяются авто (без стрелок), как в академии */
+  .fin-slider{ position:relative; width:100%; aspect-ratio:1918 / 1090; background:#fff; }
+  .fin-slide{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain;
+    opacity:0; transition:opacity .8s ease; transform:translateZ(0); will-change:opacity; }
+  .fin-slide.active{ opacity:1; }
 
   /* ----- тёмная карта (метрика) ----- */
   .card{ container-type:size; position:absolute; left:810px; top:120px; width:1010px; height:840px;
@@ -546,22 +557,16 @@
           <div class="kicker">05 · приоритеты</div>
           <h1>Навожу порядок по приоритетам, не ломая рабочее</h1>
           <p class="body">Захожу по шагам: сначала закрываю срочное и забочусь о деньгах, потом нахожу проблемы и расставляю приоритеты. Что работает, не трогаю, а усиливаю. По отчётам вижу, где сбоит и где перегруз, и убираю ручную работу. Улучшаю постоянно, но комфортно для людей.</p>
-          <div class="steps-mini">
-            <span class="sm"><i>1</i><b>Срочное и деньги</b></span><span class="sm-arr">→</span>
-            <span class="sm"><i>2</i><b>Анализ и приоритеты</b></span><span class="sm-arr">→</span>
-            <span class="sm"><i>3</i><b>Усиливаю работающее</b></span><span class="sm-arr">→</span>
-            <span class="sm"><i>4</i><b>Убираю рутину</b></span>
-          </div>
-          <div class="result"><span class="r-from">70</span><span class="r-arrow">→</span><span class="r-to">130+</span><span class="r-label">клиентов на одном менеджере · за 3 месяца</span></div>
+          <p class="insight">За счёт этого подхода менеджер едва тянул 70 клиентов на ТО <span class="ar">→</span> <b>за три месяца вышел на 130</b>.</p>
           <div class="dig" data-modal-target="modal-tpl">
-            <span class="dig-line">Шаблоны расчётов — как подняли количество и снизили ошибки</span>
+            <span class="dig-line">Узнайте, как за счёт создания шаблонов расчётов и аудитов мы увеличили их количество и снизили вероятность ошибки</span>
             <div class="dig-arrow">→</div>
           </div>
         </div>
 
         <div class="to-art">
-          <div class="to-cap">Юнит-экономика по каждому клиенту ТО · цветом — здоровье маржи · <b>суммы и названия под NDA</b></div>
-          <div class="to-frame"><img src="assets/to-margin.png" alt="Таблица юнит-экономики по клиентам ТО — маржа с цветовой логикой, данные обезличены" id="toImg"></div>
+          <div class="to-cap">Скрин из <b>Bitrix24</b>, на котором видна автоматизация работы воронки для снижения количества ручного труда</div>
+          <div class="to-frame"><img src="assets/s4-bitrix.png" alt="Bitrix24 — автоматизация воронки продаж: роботы и триггеры" id="toImg"></div>
         </div>
       </div>
     </section>
@@ -573,14 +578,17 @@
 
         <div class="text-col">
           <div class="kicker">06 · финансы</div>
-          <h1>Считаю каждую копейку, но трачу миллион, если он принесёт выгоду</h1>
-          <p class="body">Финансы держу под контролем. Веду платёжный календарь, отчёты по прибыли и движению денег: важно знать, где деньги, когда придут и не грозит ли кассовый разрыв. Собрал отдельную отчётность по объектам: сводит данные из десятка источников и разные методы учёта. По каждому вижу прибыль и убыток с точностью до 5–10 тысяч.</p>
-          <p class="quote">«Готов тратить и миллионы, если знаю, что вернётся <span>в восемь раз больше</span>».</p>
+          <h1>Считаю каждую копейку и трачу деньги с умом</h1>
+          <p class="body">Финансы держу под контролем. Веду платёжный календарь, отчёты по прибыли и движению денег: важно знать, где деньги, когда придут и не грозит ли кассовый разрыв. Собрал отдельную отчётность по объектам: сводит данные из десятка источников и разные методы учёта. По каждому вижу прибыль и убыток с точностью до 5–10 тысяч. В т. ч. веду отчёты юнит-экономики по клиентам на тех. обслуживании.</p>
+          <p class="cta">«Готов тратить и миллионы, если знаю, что вернётся <mark>в восемь раз больше</mark>».</p>
         </div>
 
         <div class="fin-art">
-          <div class="fin-cap">ОПиУ по объекту · свожу данные из десятка источников · прибыль и убыток до 5–10 тыс · <b>суммы под NDA</b></div>
-          <div class="fin-frame"><img src="assets/opiu.png" alt="Дашборд ОПиУ по объекту — бюджет, факт, маржа; суммы обезличены" id="opiuImg"></div>
+          <div class="fin-cap" id="finCap"></div>
+          <div class="fin-slider" id="finSlider">
+            <img class="fin-slide active" src="assets/fin-report.png" data-cap="Авторское API + баланс + финансовый отчёт по объекту — есть у каждого объекта" alt="Финансовый отчёт по объекту — баланс и ОПиУ">
+            <img class="fin-slide" src="assets/fin-unit.png" data-cap="Таблица расчёта юнит-экономики по клиентам на техническом обслуживании" alt="Юнит-экономика по клиентам ТО — без названий объектов">
+          </div>
         </div>
       </div>
     </section>
@@ -624,11 +632,15 @@
     <div class="modal-sheet">
       <button class="modal-close" data-close>×</button>
       <div class="modal-body">
-        <h2 class="modal-h">Шаблоны вместо дополнительных сотрудников</h2>
-        <p class="modal-text">Проектировщиков не хватало под расчёты и аудиты рабочей документации. Сделал шаблоны расчётов с готовыми решениями и поставщиками и чек-листы аудита, которые сами заполняют файл для клиента с комментариями. В итоге за день один проектировщик стал делать больше расчётов и аудитов, а качество выровнялось.</p>
-        <div class="tg-cap">сервис генерации аудита РД · форма → готовый PDF · <b>демо-данные, без NDA</b></div>
+        <h2 class="modal-h">Создали шаблоны вместо найма дополнительных сотрудников</h2>
+        <p class="modal-text">Нам не хватало проектировщиков под выполнение расчётов и аудитов рабочей документации. Мы создали шаблоны с готовыми решениями, поставщиками, чек-листами и системой проверок, которые автоматически заполняют файл и дают комментарии для клиента. В итоге количество расчётов и проверок РД увеличилось, а также их качество.</p>
       </div>
-      <div class="modal-media"><video src="assets/pdf-gen.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Сервис генерации аудита рабочей документации: форма заполняется и собирает готовый PDF" id="tplVid"></video></div>
+      <div class="modal-media">
+        <div class="vid-wrap">
+          <div class="vid-cap"><b>Сервис генерации аудита РД</b><span>демонстрация того, как работает сервис генерации аудитов рабочей документации · демо-данные, без NDA</span></div>
+          <div class="vid-frame"><video src="assets/pdf-gen.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Сервис генерации аудита рабочей документации" id="tplVid"></video></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -669,6 +681,16 @@
       setInterval(()=>{ slides[si].classList.remove('active'); si=(si+1)%slides.length; slides[si].classList.add('active'); }, 4500);
     }
 
+    // карусель финансов (s5) — авто-смена + подпись из data-cap, без стрелок
+    const finSlider = document.getElementById('finSlider'), finCap = document.getElementById('finCap');
+    if (finSlider){
+      const fslides = [...finSlider.querySelectorAll('.fin-slide')];
+      let fci = 0;
+      const setFinCap = ()=>{ if(finCap) finCap.textContent = fslides[fci].dataset.cap || ''; };
+      setFinCap();
+      if (fslides.length > 1) setInterval(()=>{ fslides[fci].classList.remove('active'); fci=(fci+1)%fslides.length; fslides[fci].classList.add('active'); setFinCap(); }, 4500);
+    }
+
     // мобильный pinch-zoom для плотных скринов в модалках
     // галереи в модалках: авто-смена + стрелки + точки, пауза при наведении
     document.querySelectorAll('.gallery').forEach(g=>{
@@ -691,10 +713,10 @@
       play();
     });
     const toImg = document.getElementById('toImg');
-    toImg && toImg.addEventListener('click', ()=>{ if(mqMobile.matches) openViewer('assets/to-margin.png'); });
+    toImg && toImg.addEventListener('click', ()=>{ if(mqMobile.matches) openViewer('assets/s4-bitrix.png'); });
     viewer && viewer.querySelector('[data-vclose]').addEventListener('click', closeViewer);
     document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeModals(); viewer && viewer.classList.remove('open'); document.body.style.overflow=''; } });
   </script>
-  <!-- build 20260609-164917 -->
+  <!-- build 20260609-171330 -->
 </body>
 </html>
