@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#11161F; --body:#36404F; --mute:#9AA3B2;
+    --ink:#11161F; --body:#36404F; --mute:#6B7480;
     --accent:#2F6BFF; --card-accent:#5AA0FF; --amber:#F7B500;
     --line:#E9ECF1;
   }
@@ -376,7 +376,7 @@
     #s2 .text-col{ left:auto; width:auto; }
     #s2 h1{ font-size:clamp(30px,7.2vw,44px); }
     .proof{ font-size:clamp(15px,4vw,18px); max-width:none; }
-    .schema-img{ position:static; transform:none; width:100%; height:auto; }
+    .schema-img{ position:static; transform:none; width:100%; height:auto; cursor:zoom-in; }
 
     /* экран 04: академия + модалка + просмотрщик */
     #s3 h1{ font-size:clamp(30px,7.2vw,44px); }
@@ -542,8 +542,8 @@
           <div class="card-info">
             <div class="card-eyebrow">показатель</div>
             <div class="card-h">Рост валовой маржи</div>
-            <div class="card-stat">460%</div>
-            <div class="card-stat-sub">на 2025 год к уровню 2022 года (в 4,6 раза)</div>
+            <div class="card-stat">360%</div>
+            <div class="card-stat-sub">2022 → 2025 год — рост в 4,6 раза</div>
             <div class="card-sub">данные по отделам под моим управлением: <b>отдел продаж, техобслуживание, тендерный отдел</b></div>
             <div class="card-note">партнёрские и сарафанные сделки исключены из отчёта</div>
           </div>
@@ -628,10 +628,10 @@
           <div class="kicker">03 · система</div>
           <h1>Снижаю зависимость бизнеса от людей, включая меня</h1>
           <p class="body">Любой бизнес работает руками людей, но я снижаю зависимость от незаменимых, и от себя в том числе. Процессы и правила описаны, знание держит система, а не один человек. Замена не обнуляет результат: новый входит по инструкции, преемник продолжает по описанному. Так система работает и без меня, на любом штате.</p>
-          <p class="proof">Слева показан пример реальной схемы взаимодействия между воронками в системе <b>Битрикс 24</b>. По ней работало <b>более 40 сотрудников</b>.</p>
+          <p class="proof">Перед вами реальная схема взаимодействия между воронками в системе <b>Битрикс 24</b>. По ней работало <b>более 40 сотрудников</b>.</p>
         </div>
 
-        <img class="schema-img" src="assets/schema.svg" alt="Карта процессов компании — лиды, отделы, статусы, реализация">
+        <img class="schema-img" src="assets/schema.svg" alt="Карта процессов компании — лиды, отделы, статусы, реализация" id="schemaImg">
       </div>
     </section>
 
@@ -736,13 +736,13 @@
         <div class="fail">
           <div class="fail-kicker">08 · провал и уроки</div>
           <h1>Мой главный провал и уроки, которые я из него вынес</h1>
-          <p class="fail-body">В какой-то момент партнёры сделали ставку на тендеры и крупных застройщиков. Ушли в это направление почти на <b>80%</b>. Объекты брали в обход расчётов и планирования. Объёмы росли быстро, а вместе с ними так же быстро и бесконтрольно раздувался штат. Дальше пошло по нарастающей: кассовые разрывы по отдельным объектам и заказчики, по которым дебиторка постоянно росла. Мои отделы всё это время работали по системе и продолжали давать результат.</p>
+          <p class="fail-body">В какой-то момент партнёры сделали ставку на тендеры и крупных застройщиков. Ушли в это направление почти на <b>80%</b>. Объекты брали в обход расчётов и планирования. Объёмы росли быстро, а вместе с ними так же быстро и бесконтрольно раздувался штат. Дальше пошло по нарастающей: кассовые разрывы по отдельным объектам и заказчики, по которым дебиторка постоянно росла.</p>
           <p class="fail-body">Я не раз пытался переубедить партнёров сменить стратегию, но не вышло. Потом, уже в процессе, помогал им обуздать хаос, но тоже без толку. Так тянулось <b>больше полутора лет</b>, пока мы не разошлись. Компания осталась с большими финансовыми трудностями, и куда она идёт сейчас, непонятно.</p>
           <div class="lessons">
             <div class="lesson-card">
               <div class="le">Мои ошибки</div>
               <ul class="le-list">
-                <li>Слишком долго верил, что договоримся, и не вышел раньше.</li>
+                <li>Тащил операционку вместо работы над реальной проблемой.</li>
                 <li>Систему строил и вёл недостаточно строго: её можно было обходить без последствий.</li>
               </ul>
             </div>
@@ -766,7 +766,7 @@
         <div class="text-col">
           <div class="kicker">09 · автоматизация</div>
           <h1>Этот опыт увеличил мою любовь к автоматизации и ИИ</h1>
-          <p class="body">Люблю автоматизацию: меньше ручного труда и ошибок. Строю интеграции, автоотчёты и ставлю ИИ в реальные функции. Сейчас он уже заменяет мне контроль качества, SEO-оптимизатора, специалиста по рекламе и дизайнера, и я экономлю на этом 200–300 тысяч в месяц. На данный момент я продолжаю активно развиваться в этом направлении.</p>
+          <p class="body">Люблю автоматизацию: меньше ручного труда и ошибок. Строю интеграции, автоотчёты и ставлю ИИ в реальные рабочие процессы. Сейчас уже закрываю функции: контроль качества, SEO-оптимизацию, рекламу и дизайн. Экономлю на этом деньги. На данный момент я продолжаю активно развиваться в этом направлении.</p>
           <div class="dig" data-modal-target="modal-bus">
             <span class="dig-line">Узнайте, как я автоматизировал отчётность почти во всей компании</span>
             <div class="dig-arrow">→</div>
@@ -967,9 +967,11 @@
     document.querySelectorAll('.modal-media > img').forEach(im=>{ im.addEventListener('click', ()=>{ if(mqMobile.matches) openViewer(im.getAttribute('src')); }); });
     const aiImg = document.getElementById('aiImg');
     aiImg && aiImg.addEventListener('click', ()=>{ if(mqMobile.matches) openViewer('assets/ai-reports.png'); });
+    const schemaImg = document.getElementById('schemaImg');
+    schemaImg && schemaImg.addEventListener('click', ()=>{ if(mqMobile.matches) openViewer('assets/schema.svg'); });
     viewer && viewer.querySelector('[data-vclose]').addEventListener('click', closeViewer);
     document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeModals(); viewer && viewer.classList.remove('open'); document.body.style.overflow=''; } });
   </script>
-  <!-- build 20260610-230709 -->
+  <!-- build 20260611-010409 -->
 </body>
 </html>
