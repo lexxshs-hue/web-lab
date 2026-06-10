@@ -96,12 +96,16 @@
   .cmp-card.now .chip{ color:var(--ink); }
 
   /* ===== ЭКРАН 03 (Не завижу от людей): текст справа, схема-картинка слева ===== */
-  #s2 .text-col{ left:980px; width:840px; }
-  #s2 h1{ font-size:54px; line-height:1.1; max-width:780px; }
-  #s2 .body{ max-width:800px; }
-  /* реальная схема — изображение на белом, без подложки/рамки, СЛЕВА */
-  .schema-img{ position:absolute; left:100px; top:50%; transform:translateY(-50%);
-    width:800px; height:auto; display:block; }
+  #s2 .text-col{ left:100px; width:760px; z-index:3; }
+  #s2 .corner{ z-index:3; }
+  #s2 h1{ font-size:54px; line-height:1.1; max-width:720px; }
+  #s2 .body{ max-width:700px; }
+  /* реальная схема — full-bleed фон-«текстура глубины», текст панелью слева */
+  .schema-img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:right center;
+    z-index:0; display:block; }
+  .schema-scrim{ position:absolute; inset:0; z-index:1; pointer-events:none; background:
+    linear-gradient(90deg, rgba(255,255,255,.97) 0%, rgba(255,255,255,.9) 32%, rgba(255,255,255,.6) 58%, rgba(255,255,255,.42) 100%),
+    radial-gradient(140% 120% at 50% 50%, rgba(255,255,255,0) 62%, rgba(13,23,48,.12) 100%); }
   /* акцент-плашка: что это за схема */
   .proof{ margin-top:30px; max-width:800px; background:#F6F8FA; border:1px solid var(--line);
     border-left:3px solid var(--accent); border-radius:12px; padding:18px 24px;
@@ -376,7 +380,8 @@
     #s2 .text-col{ left:auto; width:auto; }
     #s2 h1{ font-size:clamp(30px,7.2vw,44px); }
     .proof{ font-size:clamp(15px,4vw,18px); max-width:none; }
-    .schema-img{ position:static; transform:none; width:100%; height:auto; cursor:zoom-in; }
+    .schema-img{ position:static; inset:auto; transform:none; width:100%; height:auto; object-fit:initial; opacity:1; cursor:zoom-in; }
+    #s2 .schema-scrim{ display:none; }
 
     /* экран 04: академия + модалка + просмотрщик */
     #s3 h1{ font-size:clamp(30px,7.2vw,44px); }
@@ -632,6 +637,7 @@
         </div>
 
         <img class="schema-img" src="assets/schema.svg" alt="Карта процессов компании — лиды, отделы, статусы, реализация" id="schemaImg">
+        <div class="schema-scrim"></div>
       </div>
     </section>
 
@@ -973,6 +979,6 @@
     viewer && viewer.querySelector('[data-vclose]').addEventListener('click', closeViewer);
     document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeModals(); viewer && viewer.classList.remove('open'); document.body.style.overflow=''; } });
   </script>
-  <!-- build 20260611-012031 -->
+  <!-- build 20260611-015415 -->
 </body>
 </html>
