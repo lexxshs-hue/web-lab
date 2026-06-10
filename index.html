@@ -284,7 +284,7 @@
   #s8 h1{ font-size:52px; line-height:1.1; max-width:720px; }
   #s8 .body{ max-width:720px; margin-top:28px; }
   #s8 .dig{ margin-top:34px; }
-  .tg-art{ position:absolute; right:100px; top:50%; transform:translateY(-50%); width:660px;
+  .tg-art{ position:absolute; right:100px; top:50%; transform:translateY(-50%); width:860px;
     display:flex; flex-direction:column; background:#fff; border:1px solid var(--line); border-top:3px solid var(--accent);
     border-radius:16px; overflow:hidden; box-shadow:0 22px 48px -30px rgba(13,23,48,.32); }
   .tg-cap2{ background:#F6F8FA; padding:18px 24px; font-size:23px; line-height:1.4; color:var(--body); }
@@ -926,7 +926,7 @@
     if (slider){
       const slides = slider.querySelectorAll('.slide');
       let si = 0;
-      setInterval(()=>{ slides[si].classList.remove('active'); si=(si+1)%slides.length; slides[si].classList.add('active'); }, 4500);
+      setInterval(()=>{ slides[si].classList.remove('active'); si=(si+1)%slides.length; slides[si].classList.add('active'); }, 5500);
     }
 
     // карусель финансов (s5) — авто-смена + подпись из data-cap, без стрелок
@@ -936,7 +936,7 @@
       let fci = 0;
       const setFinCap = ()=>{ if(finCap) finCap.textContent = fslides[fci].dataset.cap || ''; };
       setFinCap();
-      if (fslides.length > 1) setInterval(()=>{ fslides[fci].classList.remove('active'); fci=(fci+1)%fslides.length; fslides[fci].classList.add('active'); setFinCap(); }, 4500);
+      if (fslides.length > 1) setInterval(()=>{ fslides[fci].classList.remove('active'); fci=(fci+1)%fslides.length; fslides[fci].classList.add('active'); setFinCap(); }, 5500);
     }
 
     // мобильный pinch-zoom для плотных скринов в модалках
@@ -970,6 +970,6 @@
     viewer && viewer.querySelector('[data-vclose]').addEventListener('click', closeViewer);
     document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeModals(); viewer && viewer.classList.remove('open'); document.body.style.overflow=''; } });
   </script>
-  <!-- build 20260610-185042 -->
+  <!-- build 20260610-202539 -->
 </body>
 </html>
