@@ -271,11 +271,11 @@
   #s7 .fail-body + .fail-body{ margin-top:20px; }
   #s7 .fail-body b{ color:#fff; font-weight:700; }
   #s7 .lessons{ display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:48px; max-width:1180px; width:100%; }
-  #s7 .lesson-card{ background:#fff; border:1px solid var(--line); border-top:3px solid var(--amber);
-    border-radius:16px; padding:30px 34px; text-align:left; box-shadow:0 22px 48px -30px rgba(8,14,28,.5); }
-  #s7 .lesson-card .le{ font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:.2em; text-transform:uppercase;
-    color:var(--amber); margin-bottom:14px; }
-  #s7 .lesson-card p{ font-size:23px; line-height:1.36; font-weight:600; color:var(--ink); letter-spacing:-.01em; }
+  #s7 .lesson-card{ background:rgba(255,255,255,.03); border:1.5px solid rgba(247,181,0,.6);
+    border-radius:16px; padding:28px 32px; text-align:left; }
+  #s7 .lesson-card .le{ font-family:'IBM Plex Mono',monospace; font-weight:500; font-size:30px; line-height:1;
+    color:var(--amber); margin-bottom:16px; letter-spacing:.02em; }
+  #s7 .lesson-card p{ font-size:23px; line-height:1.36; font-weight:600; color:#fff; letter-spacing:-.01em; }
 
   /* ----- тёмная карта (метрика) ----- */
   .card{ container-type:size; position:absolute; left:810px; top:120px; width:1010px; height:840px;
@@ -398,6 +398,7 @@
     #s7 .fail-body{ font-size:clamp(16px,4.3vw,19px); margin-top:1.3em; max-width:none; }
     #s7 .lessons{ grid-template-columns:1fr; gap:14px; margin-top:1.6em; }
     #s7 .lesson-card{ padding:clamp(22px,6vw,30px); }
+    #s7 .lesson-card .le{ font-size:clamp(24px,6vw,28px); margin-bottom:.5em; }
     #s7 .lesson-card p{ font-size:clamp(18px,4.8vw,22px); }
 
     /* карта: авто-высота, вертикальный стек, читаемые размеры (не container-units) */
@@ -684,16 +685,16 @@
         <div class="fail">
           <div class="fail-kicker">08 · провал и уроки</div>
           <h1>Мой главный провал и уроки, которые я из него вынес</h1>
-          <p class="fail-body">Компания росла и развивалась. В какой-то момент партнёры сделали ставку на тендеры и крупных застройщиков и ушли в это направление почти на 80%. Мои отделы по-прежнему работали по системе и эффективно, но новое направление вели в обход расчётов и планирования.</p>
-          <p class="fail-body">Проблемы начинались по чуть-чуть и копились <b>больше полутора лет</b>: раздутые команды без контроля, сомнительные подрядчики, кассовые разрывы по отдельным объектам, заказчики с растущей дебиторкой. Всё это время я повторял, что бесконтрольное управление к добру не приведёт, разбирался и помогал обуздать хаос — но изменений вне своей зоны не добился. В итоге мы разошлись, и компания не справилась.</p>
+          <p class="fail-body">Партнёры сделали ставку на тендеры и крупных застройщиков и ушли в это направление почти на <b>80%</b>, а вели его в обход расчётов и планирования. Мои отделы при этом работали по системе и эффективно.</p>
+          <p class="fail-body">Переубедить партнёров я не сумел. Дальше помогал выправить, но обуздать хаос в целом не вышло, и я слишком долго на это рассчитывал, вместо того чтобы выйти раньше. Так копилось <b>больше полутора лет</b>. В итоге мы разошлись, а компания пришла к большим финансовым трудностям и идёт к закрытию — или непонятно к чему вообще.</p>
           <div class="lessons">
             <div class="lesson-card">
-              <div class="le">урок 1</div>
-              <p>О стратегии договариваться на берегу — и пересматривать как можно чаще, с выгодой обеим сторонам.</p>
+              <div class="le">01</div>
+              <p>Договариваться о стратегии на берегу и пересматривать как можно чаще, с выгодой обеим сторонам.</p>
             </div>
             <div class="lesson-card">
-              <div class="le">урок 2</div>
-              <p>Систему делать прозрачнее и эффективнее — чтобы в ней не оставалось места «бомбам замедленного действия».</p>
+              <div class="le">02</div>
+              <p>Систему делать прозрачнее и эффективнее, чтобы в ней не было места «бомбам замедленного действия».</p>
             </div>
           </div>
         </div>
@@ -849,6 +850,6 @@
     viewer && viewer.querySelector('[data-vclose]').addEventListener('click', closeViewer);
     document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeModals(); viewer && viewer.classList.remove('open'); document.body.style.overflow=''; } });
   </script>
-  <!-- build 20260610-021435 -->
+  <!-- build 20260610-142725 -->
 </body>
 </html>
