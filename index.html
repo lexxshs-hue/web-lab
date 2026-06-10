@@ -775,9 +775,7 @@
 
         <div class="tg-art">
           <div class="tg-cap2">Скрин из телеграма: ИИ-боты присылают автоотчёты по отделам — маркетинг, ОКК, SEO</div>
-          <div class="tg-frame">
-            <div class="tg-ph">Здесь будет обезличенный скрин ИИ-отчётов в телеграме — подменю на твою копию (фамилии скрыты)</div>
-          </div>
+          <div class="tg-frame"><img src="assets/ai-reports.png" alt="ИИ-боты в телеграме присылают автоотчёты по отделам — маркетинг, ОКК, SEO" id="aiImg"></div>
         </div>
       </div>
     </section>
@@ -790,7 +788,7 @@
         <div class="close-wrap">
           <div class="kicker">10 · встреча</div>
           <h1>Давайте встретимся</h1>
-          <p class="body">За час на примерах покажу, что мой подход применим к вашему бизнесу. Власть забирать не собираюсь — наоборот, объясню, как система работает без меня. Разберу, как мыслю про процессы, и накидаю первое: где навести порядок, что внедрить, где забрать первые деньги. Это мини-аудит, а не рассказ обо мне.</p>
+          <p class="body">За час на примерах покажу, что мой подход применим к вашему бизнесу. Власть забирать не собираюсь — наоборот, объясню, как система работает без меня. Разберу, как мыслю про процессы, попробую сразу предложить варианты: где навести порядок, что внедрить, где забрать первые деньги. Это мини-аудит, а не рассказ обо мне.</p>
           <div class="cta-row">
             <a class="btn btn-primary" href="https://t.me/leadmaker" target="_blank" rel="noopener">
               <svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.6 20c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.6 13.5l-4.8-1.5c-1-.3-1-.9.2-1.4l18.8-7.2c.9-.3 1.6.2 1.3 1.4Z"/></svg>
@@ -967,9 +965,11 @@
     const shahImg = document.getElementById('shahImg');
     shahImg && shahImg.addEventListener('click', ()=>{ if(mqMobile.matches) openViewer('assets/shahmatka.png'); });
     document.querySelectorAll('.modal-media > img').forEach(im=>{ im.addEventListener('click', ()=>{ if(mqMobile.matches) openViewer(im.getAttribute('src')); }); });
+    const aiImg = document.getElementById('aiImg');
+    aiImg && aiImg.addEventListener('click', ()=>{ if(mqMobile.matches) openViewer('assets/ai-reports.png'); });
     viewer && viewer.querySelector('[data-vclose]').addEventListener('click', closeViewer);
     document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeModals(); viewer && viewer.classList.remove('open'); document.body.style.overflow=''; } });
   </script>
-  <!-- build 20260610-164442 -->
+  <!-- build 20260610-185042 -->
 </body>
 </html>
